@@ -1,0 +1,1334 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.19)  20 SEP 2017 08:55
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/home/zjs/graph/graph.tex
+(/home/zjs/graph/graph.tex
+LaTeX2e <2017-04-15>
+Babel <3.12> and hyphenation patterns for 84 language(s) loaded.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/ctexbook.cls
+(/usr/local/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2017/07/19 L3 programming layer (loader) 
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2017/07/19 L3 programming layer (code)
+\c_max_int=\count79
+\l_tmpa_int=\count80
+\l_tmpb_int=\count81
+\g_tmpa_int=\count82
+\g_tmpb_int=\count83
+\g__intarray_font_int=\count84
+\g__prg_map_int=\count85
+\c_log_iow=\count86
+\l_iow_line_count_int=\count87
+\l__iow_line_target_int=\count88
+\l__iow_one_indent_int=\count89
+\l__iow_indent_int=\count90
+\c_zero_dim=\dimen102
+\c_max_dim=\dimen103
+\l_tmpa_dim=\dimen104
+\l_tmpb_dim=\dimen105
+\g_tmpa_dim=\dimen106
+\g_tmpb_dim=\dimen107
+\c_zero_skip=\skip41
+\c_max_skip=\skip42
+\l_tmpa_skip=\skip43
+\l_tmpb_skip=\skip44
+\g_tmpa_skip=\skip45
+\g_tmpb_skip=\skip46
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
+\l_keys_choice_int=\count91
+\c__fp_leading_shift_int=\count92
+\c__fp_middle_shift_int=\count93
+\c__fp_trailing_shift_int=\count94
+\c__fp_big_leading_shift_int=\count95
+\c__fp_big_middle_shift_int=\count96
+\c__fp_big_trailing_shift_int=\count97
+\c__fp_Bigg_leading_shift_int=\count98
+\c__fp_Bigg_middle_shift_int=\count99
+\c__fp_Bigg_trailing_shift_int=\count100
+\c__fp_rand_size_int=\count101
+\c__fp_rand_four_int=\count102
+\c__fp_rand_eight_int=\count103
+\l__sort_length_int=\count104
+\l__sort_min_int=\count105
+\l__sort_top_int=\count106
+\l__sort_max_int=\count107
+\l__sort_true_max_int=\count108
+\l__sort_block_int=\count109
+\l__sort_begin_int=\count110
+\l__sort_end_int=\count111
+\l__sort_A_int=\count112
+\l__sort_B_int=\count113
+\l__sort_C_int=\count114
+\l__tl_build_start_index_int=\count115
+\l__tl_build_index_int=\count116
+\l__tl_analysis_normal_int=\count117
+\l__tl_analysis_index_int=\count118
+\l__tl_analysis_nesting_int=\count119
+\l__tl_analysis_type_int=\count120
+\l__regex_internal_a_int=\count121
+\l__regex_internal_b_int=\count122
+\l__regex_internal_c_int=\count123
+\l__regex_balance_int=\count124
+\l__regex_group_level_int=\count125
+\l__regex_mode_int=\count126
+\c__regex_cs_in_class_mode_int=\count127
+\c__regex_cs_mode_int=\count128
+\l__regex_catcodes_int=\count129
+\l__regex_default_catcodes_int=\count130
+\c__regex_catcode_D_int=\count131
+\c__regex_catcode_S_int=\count132
+\c__regex_catcode_L_int=\count133
+\c__regex_catcode_O_int=\count134
+\c__regex_catcode_A_int=\count135
+\c__regex_all_catcodes_int=\count136
+\l__regex_show_lines_int=\count137
+\l__regex_min_state_int=\count138
+\l__regex_max_state_int=\count139
+\l__regex_left_state_int=\count140
+\l__regex_right_state_int=\count141
+\l__regex_capturing_group_int=\count142
+\l__regex_min_pos_int=\count143
+\l__regex_max_pos_int=\count144
+\l__regex_curr_pos_int=\count145
+\l__regex_start_pos_int=\count146
+\l__regex_success_pos_int=\count147
+\l__regex_curr_char_int=\count148
+\l__regex_curr_catcode_int=\count149
+\l__regex_last_char_int=\count150
+\l__regex_case_changed_char_int=\count151
+\l__regex_curr_state_int=\count152
+\l__regex_step_int=\count153
+\l__regex_min_active_int=\count154
+\l__regex_max_active_int=\count155
+\l__regex_replacement_csnames_int=\count156
+\l__regex_match_count_int=\count157
+\l__regex_min_submatch_int=\count158
+\l__regex_submatch_int=\count159
+\l__regex_zeroth_submatch_int=\count160
+\g__debug_trace_regex_int=\count161
+\c_empty_box=\box26
+\l_tmpa_box=\box27
+\l_tmpb_box=\box28
+\g_tmpa_box=\box29
+\g_tmpb_box=\box30
+\l__box_top_dim=\dimen108
+\l__box_bottom_dim=\dimen109
+\l__box_left_dim=\dimen110
+\l__box_right_dim=\dimen111
+\l__box_top_new_dim=\dimen112
+\l__box_bottom_new_dim=\dimen113
+\l__box_left_new_dim=\dimen114
+\l__box_right_new_dim=\dimen115
+\l__box_internal_box=\box31
+\l__coffin_internal_box=\box32
+\l__coffin_internal_dim=\dimen116
+\l__coffin_offset_x_dim=\dimen117
+\l__coffin_offset_y_dim=\dimen118
+\l__coffin_x_dim=\dimen119
+\l__coffin_y_dim=\dimen120
+\l__coffin_x_prime_dim=\dimen121
+\l__coffin_y_prime_dim=\dimen122
+\c_empty_coffin=\box33
+\l__coffin_aligned_coffin=\box34
+\l__coffin_aligned_internal_coffin=\box35
+\l_tmpa_coffin=\box36
+\l_tmpb_coffin=\box37
+\l__coffin_display_coffin=\box38
+\l__coffin_display_coord_coffin=\box39
+\l__coffin_display_pole_coffin=\box40
+\l__coffin_display_offset_dim=\dimen123
+\l__coffin_display_x_dim=\dimen124
+\l__coffin_display_y_dim=\dimen125
+\l__coffin_bounding_shift_dim=\dimen126
+\l__coffin_left_corner_dim=\dimen127
+\l__coffin_right_corner_dim=\dimen128
+\l__coffin_bottom_corner_dim=\dimen129
+\l__coffin_top_corner_dim=\dimen130
+\l__coffin_scaled_total_height_dim=\dimen131
+\l__coffin_scaled_width_dim=\dimen132
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
+File: l3pdfmode.def 2017/03/18 v L3 Experimental driver: PDF mode
+\l__driver_color_stack_int=\count162
+\l__driver_tmp_box=\box41
+))
+Document Class: ctexbook 2017/08/07 v2.4.10 Chinese adapter for class book (CTE
+X)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2017/07/19 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count163
+\g__xparse_grabber_int=\count164
+\l__xparse_m_args_int=\count165
+\l__xparse_mandatory_args_int=\count166
+\l__xparse_v_nesting_int=\count167
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2017/07/19 LaTeX2e option processing using LaTeX3 keys
+)
+\g__file_internal_ior=\read1
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/ctexhook.sty
+Package: ctexhook 2017/08/07 v2.4.10 Document and package hooks (CTEX)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/ctexpatch.sty
+Package: ctexpatch 2017/08/07 v2.4.10 Patching commands (CTEX)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ms/everysel.sty
+Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
+)
+\l__ctex_tmp_int=\count168
+\l__ctex_tmp_box=\box42
+\l__ctex_tmp_dim=\dimen133
+\g__ctex_font_size_flag=\count169
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/config/ctexopts.cfg
+File: ctexopts.cfg 2017/08/07 v2.4.10 Option configuration file (CTEX)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count170
+\c@chapter=\count171
+\c@section=\count172
+\c@subsection=\count173
+\c@subsubsection=\count174
+\c@paragraph=\count175
+\c@subparagraph=\count176
+\c@figure=\count177
+\c@table=\count178
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/engine/ctex-engine-pdftex.de
+f
+File: ctex-engine-pdftex.def 2017/08/07 v2.4.10 (pdf)LaTeX adapter (CTEX)
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/cjk/texinput/CJK.sty
+Package: CJK 2015/04/18 4.8.4
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/cjk/texinput/mule/MULEenc.sty
+Package: MULEenc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/cjk/texinput/CJK.enc
+File: CJK.enc 2015/04/18 4.8.4
+)
+LaTeX Info: Redefining \selectfont on input line 755.
+\CJK@indent=\box43
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/cjkpunct/CJKpunct.sty
+Package: CJKpunct 2016/05/14 4.8.4
+\CJKpunct@cnta=\count179
+\CJKpunct@cntb=\count180
+\CJKpunct@cntc=\count181
+\CJKpunct@cntd=\count182
+\CJKpunct@cnte=\count183
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/cjkpunct/CJKpunct.spa))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/cjk/texinput/CJKspace.sty
+Package: CJKspace 2015/04/18 3.8.0
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/cjk/texinput/standard.bdg
+File: standard.bdg 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/ctexspa.def
+File: ctexspa.def 2017/08/07 v2.4.10 Space info for CJKpunct (CTEX)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/cjk/texinput/CJKfntef.sty
+Package: CJKfntef 2015/04/18 4.8.4
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/cjk/texinput/CJKulem.sty
+Package: CJKulem 2015/04/18 4.8.4
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box44
+\UL@hyphenbox=\box45
+\UL@skip=\skip49
+\UL@hook=\toks14
+\UL@height=\dimen135
+\UL@pe=\count184
+\UL@pixel=\dimen136
+\ULC@box=\box46
+Package: ulem 2012/05/18
+\ULdepth=\dimen137
+)
+\UL@lastkern=\dimen138
+\CJK@skip=\skip50
+)
+\CJK@fntefSkip=\skip51
+\CJK@nest=\count185
+\CJK@fntefDimen=\dimen139
+\CJK@underdotBox=\box47
+\CJK@ULbox=\box48
+\CJK@underanyskip=\dimen140
+)
+\ccwd=\dimen141
+\l__ctex_ccglue_skip=\skip52
+)
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \ctexset with sig. '' on line 388.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \CTEXsetup with sig. '+o>{\TrimSpaces }m' on line 394.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \CTEXoptions with sig. '+o' on line 400.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \CTEXsetfont with sig. '' on line 418.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \ziju with sig. 'm' on line 490.
+.................................................
+\l__ctex_ziju_dim=\dimen142
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \CTEXindent with sig. '' on line 531.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \CTEXnoindent with sig. '' on line 537.
+.................................................
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/zhnumber/zhnumber.sty
+Package: zhnumber 2017/08/07 v2.5 Typesetting numbers with Chinese glyphs
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhnumber with sig. '+o+m' on line 50.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhnumberwithoptions with sig. '+m+m' on line 57.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhnum with sig. '+o+m' on line 111.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhnumwithoptions with sig. '+m+m' on line 118.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhdig with sig. '+o+m' on line 296.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhdigwithoptions with sig. '+m+m' on line 303.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhdigits with sig. '+s+o+m' on line 317.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhdigitswithoptions with sig. '+m+m+m' on line 324.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhdate with sig. '+s+m' on line 383.
+.................................................
+\l__zhnum_scale_int=\count186
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhnumExtendScaleMap with sig. '>{\TrimSpaces }+o+m' on
+. line 505.
+.................................................
+\l__zhnum_byte_min_int=\count187
+\l__zhnum_byte_max_int=\count188
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zhnumsetup with sig. '+m' on line 935.
+.................................................
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/zhnumber/zhnumber-gbk.cfg
+File: zhnumber-gbk.cfg 2017/08/07 v2.5 Chinese numerals with GBK encoding
+))
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \CTEXnumber with sig. 'mm' on line 554.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \CTEXdigits with sig. 'mm' on line 556.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \ctex_assign_heading_name:nn with sig. 'm>{\SplitArgument
+. {\c_one }{,}}+m' on line 688.
+.................................................
+\l__ctex_heading_skip=\skip53
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \partmark with sig. 'm' on line 735.
+.................................................
+.................................................
+. LaTeX info: "xparse/redefine-command"
+. 
+. Redefining command \refstepcounter with sig. 'm' on line 1331.
+.................................................
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/scheme/ctex-scheme-chinese-b
+ook.def
+File: ctex-scheme-chinese-book.def 2017/08/07 v2.4.10 Chinese scheme for book (
+CTEX)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/config/ctex-name-gbk.cfg
+File: ctex-name-gbk.cfg 2017/08/07 v2.4.10 Caption with encoding GBK (CTEX)
+))
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \zihao with sig. 'm' on line 1334.
+.................................................
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/ctex-c5size.clo
+File: ctex-c5size.clo 2017/08/07 v2.4.10 c5size option (CTEX)
+)
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \CTeX with sig. '' on line 1438.
+.................................................
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-ubuntu.
+def
+File: ctex-fontset-ubuntu.def 2017/08/07 v2.4.10 Ubuntu fonts definition (CTEX)
+
+ (/usr/local/texlive/2017/texmf-dist/tex/generic/ctex/zhubuntufonts.tex
+File: zhubuntufonts.tex 2017/08/07 v2.4.10 Ubuntu font map loader for pdfTeX an
+d DVIPDFMx (CTEX)
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{UGBK.sfd
+}{Unicode.sfd})
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \songti with sig. '' on line 81.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \heiti with sig. '' on line 82.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \kaishu with sig. '' on line 83.
+.................................................
+)) (/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/config/ctex.cfg
+File: ctex.cfg 2017/08/07 v2.4.10 Configuration file (CTEX)
+) (/usr/local/texlive/2017/texmf-dist/tex/latex/cjk/texinput/extended.enc
+File: extended.enc 2015/04/18 4.8.4
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/cjk/texinput/extended.chr
+File: extended.chr 2015/04/18 4.8.4
+)
+(./graph.aux)
+\openout1 = `graph.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+ ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 3.
+
+��һ��
+LaTeX Font Info:    Try loading font information for C19+rm on input line 4.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/fd/c19rm.fd
+File: c19rm.fd 2017/08/07 v2.4.10 Chinese font definition (CTEX)
+)<<c1940.cmap>><<c1961.cmap>><<c1963.cmap>><<c1975.cmap>><<c1946.cmap>><<c1934.
+cmap>><<c1978.cmap>><<c1918.cmap>><<c1943.cmap>><<c1977.cmap>><<c1917.cmap>><<c
+1938.cmap>><<c1976.cmap>>
+/home/zjs/graph/graph.tex:5: Undefined control sequence.
+<recently read> �
+                 
+l.5     \section{最大流}
+                           
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<<c1929.cmap>><<c1939.cmap>>
+/home/zjs/graph/graph.tex:5: Undefined control sequence.
+<argument> \CTEXifname {\CTEXthesection }{}最
+                                              大流
+l.5     \section{最大流}
+                           
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/zjs/graph/graph.tex:5: Undefined control sequence.
+<argument> 最
+              大流
+l.5     \section{最大流}
+                           
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/zjs/graph/graph.tex:6: Undefined control sequence.
+<recently read> �
+                 
+l.6     最
+           大流算法分成两大类：增广路（augmengting path）算�...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<<c1905.cmap>><<c1906.cmap>><<c1974.cmap>><<c1927.cmap>>
+Package CJKpunct Info: use punctuation spaces for family 'rm' with punctstyle (
+quanjiao) on input line 6.
+<<c1944.cmap>><<c1945.cmap>><<c1923.cmap>><<c1935.cmap>><<c1983.cmap>><<c1907.c
+map>><<c1916.cmap>><<c1942.cmap>><<c1903.cmap>><<c1930.cmap>><<c1947.cmap>>
+/home/zjs/graph/graph.tex:6: Undefined control sequence.
+<recently read> �
+                 
+l.6 ...��与预流推进（preflow-push）算法�
+                                                  �
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<<c1902.cmap>>
+/home/zjs/graph/graph.tex:7: Undefined control sequence.
+<recently read> �
+                 
+l.7     这一
+              节介绍的三个算法，都属于增广路算法。
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<<c1910.cmap>><<c1919.cmap>><<c1909.cmap>>
+/home/zjs/graph/graph.tex:7: Undefined control sequence.
+<recently read> �
+                 
+l.7 ...��三个算法，都属于增广路算法�
+                                                  �
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<<c1926.cmap>><<c1932.cmap>>
+/home/zjs/graph/graph.tex:8: Undefined control sequence.
+<recently read> �
+                 
+l.8     下面给出几个定义�
+                                  �
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/zjs/graph/graph.tex:9: Improper alphabetic constant.
+<to be read again> 
+                   \subsubsection 
+l.9     \subsubsection
+                      *{流网络}
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:9: Missing = inserted for \ifnum.
+<to be read again> 
+                   \par 
+l.9     \subsubsection
+                      *{流网络}
+I was expecting to see `<', `=', or `>'. Didn't.
+
+/home/zjs/graph/graph.tex:9: Missing number, treated as zero.
+<to be read again> 
+                   \par 
+l.9     \subsubsection
+                      *{流网络}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/zjs/graph/graph.tex:9: Improper alphabetic constant.
+<to be read again> 
+                   \subsubsection 
+l.9     \subsubsection
+                      *{流网络}
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:9: Missing = inserted for \ifnum.
+<to be read again> 
+                   \par 
+l.9     \subsubsection
+                      *{流网络}
+I was expecting to see `<', `=', or `>'. Didn't.
+
+/home/zjs/graph/graph.tex:9: Missing number, treated as zero.
+<to be read again> 
+                   \par 
+l.9     \subsubsection
+                      *{流网络}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/zjs/graph/graph.tex:9: Improper alphabetic constant.
+<to be read again> 
+                   \subsubsection 
+l.9     \subsubsection
+                      *{流网络}
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+
+Overfull \hbox (1.0427pt too wide) in paragraph at lines 6--9
+[]\C19/rm/m/n/10.53937/76 Q \C19/rm/m/n/10.53937/75 � \C19/rm/m/n/10.53937/29 �
+ \C19/rm/m/n/10.53937/39 � \C19/rm/m/n/10.53937/77 ! \C19/rm/m/n/10.53937/17 � 
+\C19/rm/m/n/10.53937/38 p \C19/rm/m/n/10.53937/75 ^^? \C19/rm/m/n/10.53937/05 [
+ \C19/rm/m/n/10.53937/06 � \C19/rm/m/n/10.53937/74 � \C19/rm/m/n/10.53937/27 � 
+` \C19/rm/m/n/10.53937/77 $ \C19/rm/m/n/10.53937/44 � \C19/rm/m/n/10.53937/45 #
+ \C19/rm/m/n/10.53937/75 � \C19/rm/m/n/10.53937/23 * \C19/rm/m/n/10.53937/43 ^^
+N \C19/rm/m/n/10.53937/77 � \C19/rm/m/n/10.53937/35 � \C19/rm/m/n/10.53937/45 ^
+^Q\OT1/cmr/m/n/10.53937 augmengting path\C19/rm/m/n/10.53937/83 ^^_
+ []
+
+/home/zjs/graph/graph.tex:9: Improper alphabetic constant.
+<to be read again> 
+                   \subsubsection 
+l.9     \subsubsection
+                      *{流网络}
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:9: Missing = inserted for \ifnum.
+<to be read again> 
+                   \par 
+l.9     \subsubsection
+                      *{流网络}
+I was expecting to see `<', `=', or `>'. Didn't.
+
+/home/zjs/graph/graph.tex:9: Missing number, treated as zero.
+<to be read again> 
+                   \par 
+l.9     \subsubsection
+                      *{流网络}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/zjs/graph/graph.tex:9: Improper alphabetic constant.
+<to be read again> 
+                   \subsubsection 
+l.9     \subsubsection
+                      *{流网络}
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:9: Missing = inserted for \ifnum.
+<to be read again> 
+                   \par 
+l.9     \subsubsection
+                      *{流网络}
+I was expecting to see `<', `=', or `>'. Didn't.
+
+/home/zjs/graph/graph.tex:9: Missing number, treated as zero.
+<to be read again> 
+                   \par 
+l.9     \subsubsection
+                      *{流网络}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/zjs/graph/graph.tex:9: Bad character code (-82).
+<argument> \@tempcnta 
+                      
+l.9     \subsubsection
+                      *{流网络}
+A character number must be between 0 and 255.
+I changed this one to zero.
+
+<<c1901.cmap>>
+/home/zjs/graph/graph.tex:9: Argument of \CJK@XX has an extra }.
+<inserted text> 
+                \par 
+l.9     \subsubsection*{流网络}
+                                  
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+/home/zjs/graph/graph.tex:9: Paragraph ended before \CJK@XX was complete.
+<to be read again> 
+                   \par 
+l.9     \subsubsection*{流网络}
+                                  
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+/home/zjs/graph/graph.tex:10: Improper alphabetic constant.
+<to be read again> 
+                   \check@icr 
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:10: Missing = inserted for \ifnum.
+<to be read again> 
+                   \aftergroup 
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+I was expecting to see `<', `=', or `>'. Didn't.
+
+/home/zjs/graph/graph.tex:10: Missing number, treated as zero.
+<to be read again> 
+                   \aftergroup 
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/zjs/graph/graph.tex:10: Improper alphabetic constant.
+<to be read again> 
+                   \check@icr 
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:10: Missing = inserted for \ifnum.
+<to be read again> 
+                   \aftergroup 
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+I was expecting to see `<', `=', or `>'. Didn't.
+
+/home/zjs/graph/graph.tex:10: Missing number, treated as zero.
+<to be read again> 
+                   \aftergroup 
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/zjs/graph/graph.tex:10: Improper alphabetic constant.
+<to be read again> 
+                   \check@icr 
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:10: Improper alphabetic constant.
+<to be read again> 
+                   \check@icr 
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:10: Missing = inserted for \ifnum.
+<to be read again> 
+                   \aftergroup 
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+I was expecting to see `<', `=', or `>'. Didn't.
+
+/home/zjs/graph/graph.tex:10: Missing number, treated as zero.
+<to be read again> 
+                   \aftergroup 
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+<<c1921.cmap>>
+/home/zjs/graph/graph.tex:10: Bad character code (-6).
+<argument> \@tempcnta 
+                      
+l.10     \emph{流网络}
+                         $G=(V,E,c,s,t)$是一个有向图，$V$、$E$是其...
+A character number must be between 0 and 255.
+I changed this one to zero.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.53937> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 10.
+<<c1913.cmap>><<c1920.cmap>>
+
+/home/zjs/graph/graph.tex:10: Package CJK Error: Invalid character code.
+
+See the CJK package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 ...�络}$G=(V,E,c,s,t)$是一个有向图，$
+                                                  V$、$E$是其点集与边...
+
+The second byte of the CJK code is out of range.
+Do you use the right encoding scheme?
+
+<<c1973.cmap>>
+
+/home/zjs/graph/graph.tex:10: Package CJK Error: Invalid character code.
+
+See the CJK package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 ...G=(V,E,c,s,t)$是一个有向图，$V$、$
+                                                  E$是其点集与边集，...
+
+The second byte of the CJK code is out of range.
+Do you use the right encoding scheme?
+
+Missing character: There is no � in font cmr10!
+<<c1904.cmap>><<c1911.cmap>><<c1936.cmap>>
+
+/home/zjs/graph/graph.tex:10: Package CJK Error: Invalid character code.
+
+See the CJK package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 ...��，点和边的数目分别记作$n$、$
+                                                  m$。 每条边\footnote{�...
+
+The second byte of the CJK code is out of range.
+Do you use the right encoding scheme?
+
+<<c1925.cmap>>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7.52812> on input line 10.
+<<c1912.cmap>>
+/home/zjs/graph/graph.tex:10: Improper alphabetic constant.
+<to be read again> 
+                   \@finalstrut 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:10: Missing = inserted for \ifnum.
+<to be read again> 
+                   \unskip 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+I was expecting to see `<', `=', or `>'. Didn't.
+
+/home/zjs/graph/graph.tex:10: Missing number, treated as zero.
+<to be read again> 
+                   \unskip 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/zjs/graph/graph.tex:10: Improper alphabetic constant.
+<to be read again> 
+                   \@finalstrut 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:10: Missing = inserted for \ifnum.
+<to be read again> 
+                   \unskip 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+I was expecting to see `<', `=', or `>'. Didn't.
+
+/home/zjs/graph/graph.tex:10: Missing number, treated as zero.
+<to be read again> 
+                   \unskip 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/zjs/graph/graph.tex:10: Improper alphabetic constant.
+<to be read again> 
+                   \@finalstrut 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:10: Missing number, treated as zero.
+<to be read again> 
+                   \relax 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/zjs/graph/graph.tex:10: Improper alphabetic constant.
+<to be read again> 
+                   \@finalstrut 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+A one-character control sequence belongs after a ` mark.
+So I'm essentially inserting \0 here.
+
+/home/zjs/graph/graph.tex:10: Missing = inserted for \ifnum.
+<to be read again> 
+                   \unskip 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+I was expecting to see `<', `=', or `>'. Didn't.
+
+/home/zjs/graph/graph.tex:10: Missing number, treated as zero.
+<to be read again> 
+                   \unskip 
+l.10 ...�边\footnote{有向图的边也称作弧}
+                                                   $(u,v)\in E$ 都有一容...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+/home/zjs/graph/graph.tex:10: Missing $ inserted.
+<inserted text> 
+                $
+l.10 ...ote{有向图的边也称作弧} $(u,v)\in
+                                                   E$ 都有一容量$c(u,v)...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+/home/zjs/graph/graph.tex:10: Undefined control sequence.
+<recently read> �
+                 
+l.10 ...的边也称作弧} $(u,v)\in E$ 都有一
+                                                  容量$c(u,v)$。$s$和$t$...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+/home/zjs/graph/graph.tex:10: Package CJK Error: Invalid character code.
+
+See the CJK package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 ...} $(u,v)\in E$ 都有一容量$c(u,v)$。$
+                                                  s$和$t$是网络中的两...
+
+The second byte of the CJK code is out of range.
+Do you use the right encoding scheme?
+
+
+/home/zjs/graph/graph.tex:10: Package CJK Error: Invalid character code.
+
+See the CJK package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 ...v)\in E$ 都有一容量$c(u,v)$。$s$和$
+                                                  t$是网络中的两个特...
+
+The second byte of the CJK code is out of range.
+Do you use the right encoding scheme?
+
+Missing character: There is no � in font cmr10!
+<<c1908.cmap>>
+Runaway argument?
+/home/zjs/graph/graph.tex:11: Paragraph ended before \CJK@XX was complete.
+<to be read again> 
+                   \par 
+l.11 
+     
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+<<c1915.cmap>>
+/home/zjs/graph/graph.tex:16: Argument of \CJK@XX has an extra }.
+<inserted text> 
+                \par 
+l.16     \section{费用流}
+                            
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+/home/zjs/graph/graph.tex:16: Paragraph ended before \CJK@XX was complete.
+<to be read again> 
+                   \par 
+l.16     \section{费用流}
+                            
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+/home/zjs/graph/graph.tex:17: Argument of \CJK@XX has an extra }.
+<inserted text> 
+                \par 
+l.17     \section{二分图}
+                            
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+/home/zjs/graph/graph.tex:17: Paragraph ended before \CJK@XX was complete.
+<to be read again> 
+                   \par 
+l.17     \section{二分图}
+                            
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+/home/zjs/graph/graph.tex:18: Undefined control sequence.
+<recently read> �
+                 
+l.18     \subsection{最大流和二分图}
+                                           
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/zjs/graph/graph.tex:18: Undefined control sequence.
+<argument> 最
+              大流和二分图
+l.18     \subsection{最大流和二分图}
+                                           
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<<c1931.cmap>>
+/home/zjs/graph/graph.tex:19: Argument of \CJK@XX has an extra }.
+<inserted text> 
+                \par 
+l.19     \subsection{匈牙利算法}
+                                     
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+/home/zjs/graph/graph.tex:19: Paragraph ended before \CJK@XX was complete.
+<to be read again> 
+                   \par 
+l.19     \subsection{匈牙利算法}
+                                     
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+/home/zjs/graph/graph.tex:20: Argument of \CJK@XX has an extra }.
+<inserted text> 
+                \par 
+l.20     \subsection{二分图模型应用}
+                                           
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+/home/zjs/graph/graph.tex:20: Paragraph ended before \CJK@XX was complete.
+<to be read again> 
+                   \par 
+l.20     \subsection{二分图模型应用}
+                                           
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+/home/zjs/graph/graph.tex:21: Undefined control sequence.
+<recently read> �
+                 
+l.21     \section{图的连通}
+                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/zjs/graph/graph.tex:21: Argument of \CJK@XX has an extra }.
+<inserted text> 
+                \par 
+l.21     \section{图的连通}
+                               
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+/home/zjs/graph/graph.tex:21: Paragraph ended before \CJK@XX was complete.
+<to be read again> 
+                   \par 
+l.21     \section{图的连通}
+                               
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+/home/zjs/graph/graph.tex:21: Undefined control sequence.
+<argument> ...name {\CTEXthesection }{}图的连�
+                                                  �
+l.21     \section{图的连通}
+                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/zjs/graph/graph.tex:21: Undefined control sequence.
+<argument> 图的连�
+                      �
+l.21     \section{图的连通}
+                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+/home/zjs/graph/graph.tex:22: Package CJK Error: Invalid character code.
+
+See the CJK package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22     \subsection{强连通-Tarjan算法}
+                                            
+The second byte of the CJK code is out of range.
+Do you use the right encoding scheme?
+
+/home/zjs/graph/graph.tex:22: Undefined control sequence.
+<argument> 强连�
+                   �-Tarjan算法
+l.22     \subsection{强连通-Tarjan算法}
+                                            
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/zjs/graph/graph.tex:23: Argument of \CJK@XX has an extra }.
+<inserted text> 
+                \par 
+l.23     \subsection{双连通}
+                               
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+/home/zjs/graph/graph.tex:23: Paragraph ended before \CJK@XX was complete.
+<to be read again> 
+                   \par 
+l.23     \subsection{双连通}
+                               
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+/home/zjs/graph/graph.tex:23: Undefined control sequence.
+<argument> 双连�
+                   �
+l.23     \subsection{双连通}
+                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1
+
+
+]
+[2] (./graph.aux) ) 
+Here is how much of TeX's memory you used:
+ 12783 strings out of 492990
+ 261157 string characters out of 6132621
+ 296096 words of memory out of 5000000
+ 16073 multiletter control sequences out of 15000+600000
+ 567973 words of font info for 160 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 42i,9n,56p,10427b,275s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+!pdfTeX error: pdflatex (file wqy-zenhei.ttc): cannot open TrueType font file f
+or reading
+ ==> Fatal error occurred, no output PDF file produced!
