@@ -4,6 +4,11 @@
 \usepackage{amssymb} % \mathbb
 % \usepackage{amstext} % \text
 \newtheorem{theorem}{定理}
+\newtheorem{lemma}{引理}
+\usepackage{listings}
+\lstset{language=C++, basicstyle=\ttfamily, frame=lines}
+\newcommand{\idx}{\mathrm{idx}}
+
 \begin{document}
     \chapter{图论高级算法}
     \section{最大流}
@@ -107,8 +112,30 @@
     我们已经知道，通过深度优先搜索（DFS）或宽度优先搜索（BFS）可在线性间内找到一条增广路。
     在下一小节中我们将证明，如果每次都沿着\emph{最短增广路}(shortest augmenting path，SAP)增广，那么增广次数是$O(VE)$的。沿着最短增广路增广的算法统称为最短增广路算法。下面三个小节中要介绍的算法都属于最短增广路算法。
     \subsection{Edmonds-Karp算法}
-    Edmonds-Karp是SAP算法的朴素实现。下面介绍代码实现的细节。
-    
+    Edmonds-Karp是SAP算法的朴素实现。代码如下：
+    \lstinputlisting{ek.cpp}
+    说明：
+    \begin{enumerate}
+        \item 用链式前项星存图。
+        \item 对任意边$e \in E$，$e$在边数组中的下标$\idx(e)$为偶数，$e$的反向边$e'$的下标$\idx(e') = \idx(e) + 1$。
+    \end{enumerate}
+
+    下面我们来分析Edmonds-Karp算法的复杂度。用$\delta_f(u,v)$表示残量网络$G_f$上从$u$到$v$的距离，$G_f$中边的长度都为$1$。
+    \begin{lemma}
+        用Edmods-Karp算法求流网络$G=(V,E,c,s,t)$的最大流的过程中，对任意节点$v\in V-\{s,t\}$，残量网络$G_f$上从源点$s$到$v$的距离$\delta_f(s,v)$随着每次增广而递增。
+    \end{lemma}
+    \begin{proof}
+        假设此命题不成立。
+        设$v$是$V-\{s,t\}$中一点；令$f$为「$s$到$v$的距离减小」首次出现之前的流，令$f'$为$f$增广之后的流。再令$v$为满足$\delta_f(s,v)>\delta_{f'}(s,v)$的点中$\delta_{f'}(s,v)$最小的一个点。令$p = s \leadsto u\to v$为$G_{f'}$中从$s$到$v$的一条最短路，因而有$(u,v)\in E_{f'}$且
+        \begin{equation}
+            \delta_{f'}(s,u) = \delta_{f'}(s,v) - 1 .
+        \end{equation}
+        又由于$v$是满足$\delta_f(s,v)>\delta_{f'}(s,v)$的点中$\delta_{f'}(s,v)$最小者，我们有
+        \begin{equation}
+            \delta_{f'}(s,u)\ge\delta_f(s,u).
+        \end{equation}
+    \end{proof}
+
     \subsection{Dinic算法}
     \subsection{ISAP算法}
     \subsection{网络流的建图}
