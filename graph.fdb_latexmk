@@ -1,9 +1,9 @@
 # Fdb version 3
-["xdvipdfmx"] 1508854752 "graph.xdv" "graph.pdf" "graph" 1508854753
-  "graph.xdv" 1508854752 9988 6b6be0d0adfb81598f68c1cbfe335f7f "xelatex"
+["xdvipdfmx"] 1509093974 "graph.xdv" "graph.pdf" "graph" 1509093974
+  "graph.xdv" 1509093974 38440 8ff5d4cbbfa9992fd264709863c2bf38 "xelatex"
   (generated)
   "graph.pdf"
-["xelatex"] 1508854751 "graph.tex" "graph.xdv" "graph" 1508854753
+["xelatex"] 1509093972 "graph.tex" "graph.xdv" "graph" 1509093974
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1480098698 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -21,10 +21,16 @@
   "/usr/local/texlive/2017/texmf-dist/tex/generic/unicode-data/CaseFolding.txt" 1498600549 78161 7893b6e005c5a521319a0d12062ae122 ""
   "/usr/local/texlive/2017/texmf-dist/tex/generic/unicode-data/SpecialCasing.txt" 1498600549 16830 e49d6f1fe536f43762ba1ecfe9e53e12 ""
   "/usr/local/texlive/2017/texmf-dist/tex/generic/unicode-data/UnicodeData.txt" 1498600549 1735010 2a52f30695dcc821f0f224650552beaf ""
+  "/usr/local/texlive/2017/texmf-dist/tex/latex/amscls/amsthm.sty" 1480098820 12225 3cca0d18522255979a1047206228b9d0 ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty" 1480098820 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty" 1480098820 13829 94730e64147574077f8ecfea9bb69af4 ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd" 1480098820 961 6518c6525a34feb5e8250ffa91731cff ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd" 1480098820 961 d02606146ba5601b5645f987c92e6193 ""
+  "/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty" 1480098820 2210 5c54ab129b848a5071554186d0168766 ""
+  "/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty" 1480098820 4160 c115536cf8d4ff25aa8c1c9bc4ecb79a ""
+  "/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty" 1504905757 84352 897a476d96a0681047a5b0f91178a3d2 ""
+  "/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty" 1480098820 4115 318a66090112f3aa3f415aeb6fe8540f ""
+  "/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty" 1480098820 2431 fe3078ec12fc30287f568596f8e0b948 ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/base/bk10.clo" 1480098821 8132 1634546e834d9ce0acd98b4276acdae2 ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/base/book.cls" 1480098821 22945 7df8250bf76418cf651c357d3631fbc3 ""
   "/usr/local/texlive/2017/texmf-dist/tex/latex/base/fix-cm.sty" 1480098821 14742 ad7ac4c2db1d39579bbccd175cdf5ca9 ""
@@ -73,9 +79,9 @@
   "/usr/local/texlive/2017/texmf-dist/web2c/texmf.cnf" 1494087824 32646 eadc4ca26cdbe7105ac7c593aa8c4f72 ""
   "/usr/local/texlive/2017/texmf-var/web2c/xetex/xelatex.fmt" 1507351097 3705187 2ab90879b94f20984b1ee64b1406c86b ""
   "/usr/local/texlive/2017/texmf.cnf" 1505759355 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "graph.aux" 1508854752 1318 e981e533f3c910faa47a62d46431c260 ""
-  "graph.tex" 1508854751 1597 08cb9ec7a300c4b52fce3254f92059a9 ""
+  "graph.aux" 1509093974 1594 efd1dc47ee0d3b3ae41b891108cdb6df ""
+  "graph.tex" 1509093972 8078 647900a43ac54fe17fbc124c89d09879 ""
   (generated)
   "graph.log"
-  "graph.xdv"
   "graph.aux"
+  "graph.xdv"
