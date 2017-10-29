@@ -24,7 +24,7 @@
         \item 图中不存在重边；\label{Restrict:1}
         \item 图中不存在反向边，即若$(u,v)\in E$，则$(v,u)\notin E$。\label{Restrict:2}
     \end{enumerate}
-    这两条限定都不妨碍一般性。我们可以通过将容量相加将重边合为一条边，反向边可以通过新增一个节点来消除。请读者注意，上文所谓「表示上的方便」是指一条边可以通过两个端点唯一确定。下文我们要介绍的算法和代码可以处理含有重边或反向边的图，这两条限定都不是根本性的，仅仅是为了方便表述而已。
+    这两条限定都不妨碍一般性。我们可以通过将容量相加把重边合为一条边，反向边可以通过新增一个节点来消除。请读者注意，上文所谓「表示上的方便」是指一条边可以通过两个端点唯一确定。下文我们要介绍的算法和代码可以处理含有重边或反向边的图，这两条限定都不是根本性的，仅仅是为了方便表述而已。
 
     \subsubsection*{流}
     流是满足下述两个性质的实值函数$f\colon V\times V\to\mathbb{R}$：
@@ -40,7 +40,7 @@
     \subsection{增广路方法}
     增广路方法是求解最大流问题的一种方法。本章要介绍的三个最大流算法都是基于增广路方法的。增广路算法涉及三个重要概念：残余网络，增广路，割。
     \subsubsection*{残量网络}
-    给定流网络$G=(V,E)$和$G$上的一个流$f$，残量网络$G_f$是由$G$和$f$所导出的一个网络。首先定义残余容量$c_f$：
+    给定流网络$G=(V,E)$和$G$上的一个流$f$，残量网络$G_f=(V,E_f,c_f, s, t)$是由$G$和$f$所导出的一个网络，简记作$G_f=(V,E_f)$。首先定义残余容量$c_f$：
     \[
     c_f(u,v) =
     \begin{cases}
@@ -49,10 +49,13 @@
         0 & \text{其他情况.}
     \end{cases}
     \]
-    这里需要指出我们提出限制\ref{Restrict:2} 的用意。$(u,v)\in E$和$(v,u)\in E$同时成立会给$c_f$的定义带来形式上的不便。
-    残量网络$G_f$定义为$G_f = (V, E_f)$，其中$E_f = \{(u,v)\in V\times V\colon c_f(u,v)>0\}$。除了可能含有反向边，残量网络也符合流网络的定义；而我们已经指出「不含反向边」并非根本性的要求，我们可以用残余容量$c_f$类似地定义残量网络上的流，称作\emph{残量流}。
+    这里需要指出我们提出限制\ref{Restrict:2} 的用意。$(u,v)\in E$和$(v,u)\in E$同时成立会给$c_f$的定义带来形式上的不便。残量网络$G_f$的边集$E_f$定义为
+    \[
+    E_f = \{(u,v)\in V\times V\colon c_f(u,v)>0\}.
+    \]
+    除了可能含有反向边，残量网络也符合流网络的定义；而我们已经指出「不含反向边」并非根本性的要求，我们可以用残余容量$c_f$类似地定义残量网络上的流，称作\emph{残量流}。
 
-    我们考虑残量流的原因在于，借助残量流$f'$，可以将原网络$G$上的流$f$修改成一个值更大的流$f\uparrow f'$。用$f'$ 增广 $f$，这正是「增广」二字含义所在。增广方法为：
+    我们考虑残量流的原因在于，借助残量网络$G_f$上的残量流$f'$，可以将网络$G$上的流$f$修改成一个值更大的流$f\uparrow f'$；即用$f'$ 增广 $f$，这正是「增广」二字含义所在。增广方法为：
     \[
     (f\uparrow f')(u,v) =\begin{cases}
     f(u,v) + f'(u,v) - f'(v,u) & \text{若$(u,v)\in E$,} \\
@@ -70,7 +73,7 @@
     \]
     其中$c_f(p) = \min\{c_f(u,v)\colon (u,v)\text{ 在路径 }p\text{ 上} \}$，$c_f(p)$称作路径$p$的残余容量。易见，$|f_p| = c_f(p) > 0$。
 
-    增广路方法即，从图$G$上的某个初始流$f$（比如零流）开始，在$G_f$找一条增广路$p$；沿着$p$增广，更新$f$和$G_f$；如此循环，直到$G_f$上找不到增广路。此时$f$便是$G$上的一个最大流。
+    增广路方法即，从图$G$上的某个初始流$f$（比如零流）开始，在$G_f$找一条增广路$p$；沿着$p$增广，更新$f$和$G_f$；如此循环，直到$G_f$上找不到增广路。此时$f$便是$G$上的一个最大流。下面要介绍的最大流最小割定理证明了增广路方法的正确性。
     \subsubsection*{流网络的割}
     为了给出最大流最小割定理，我们先介绍割的概念。
     将流网络$G=(V,E)$的点集$V$划分成两个子集$S$和$T=V-S$使得$s\in S$且$t\in T$，$(S,T)$称作$G$的一个割。令$f$为$G$上的一个流，割$(S,T)$之间的\emph{净流}$f(S,T)$定义为
@@ -101,6 +104,7 @@
             &= c(S, T)
         \end{align*}
         所以 $ |f| = f(S,T) = c(S, T)$。
+
         (3)$\Rightarrow$(1)：由于对任意割$(S,T)$都有$|f|\le c(S,T)$，$|f|=c(S,T)$蕴含着$f$是一个最大流。
     \end{proof}
 
@@ -116,26 +120,64 @@
     \lstinputlisting{ek.cpp}
     说明：
     \begin{enumerate}
-        \item 用链式前项星存图。
+        \item 用链式前向星存图。
         \item 对任意边$e \in E$，$e$在边数组中的下标$\idx(e)$为偶数，$e$的反向边$e'$的下标$\idx(e') = \idx(e) + 1$。
     \end{enumerate}
 
-    下面我们来分析Edmonds-Karp算法的复杂度。用$\delta_f(u,v)$表示残量网络$G_f$上从$u$到$v$的距离，$G_f$中边的长度都为$1$。
-    \begin{lemma}
-        用Edmods-Karp算法求流网络$G=(V,E,c,s,t)$的最大流的过程中，对任意节点$v\in V-\{s,t\}$，残量网络$G_f$上从源点$s$到$v$的距离$\delta_f(s,v)$随着每次增广而递增。
+    下面我们来分析Edmonds-Karp算法的复杂度。用$\delta_f(u,v)$表示残量网络$G_f$上从$u$到$v$的距离，$G_f$中边的长度都是$1$。
+    \begin{lemma}\label{Lemma:1}
+        用Edmonds-Karp算法求流网络$G=(V,E,c,s,t)$的最大流的过程中，对任意节点$v\in V-\{s,t\}$，残量网络$G_f$上从源点$s$到$v$的距离$\delta_f(s,v)$随着每次增广而递增。
     \end{lemma}
     \begin{proof}
         假设此命题不成立。
         设$v$是$V-\{s,t\}$中一点；令$f$为「$s$到$v$的距离减小」首次出现之前的流，令$f'$为$f$增广之后的流。再令$v$为满足$\delta_f(s,v)>\delta_{f'}(s,v)$的点中$\delta_{f'}(s,v)$最小的一个点。令$p = s \leadsto u\to v$为$G_{f'}$中从$s$到$v$的一条最短路，因而有$(u,v)\in E_{f'}$且
         \begin{equation}
-            \delta_{f'}(s,u) = \delta_{f'}(s,v) - 1 .
+            \delta_{f'}(s,u) = \delta_{f'}(s,v) - 1 . \label{Eq:1}
         \end{equation}
         又由于$v$是满足$\delta_f(s,v)>\delta_{f'}(s,v)$的点中$\delta_{f'}(s,v)$最小者，我们有
         \begin{equation}
-            \delta_{f'}(s,u)\ge\delta_f(s,u).
+            \delta_{f'}(s,u)\ge\delta_f(s,u). \label{Ineq:1}
         \end{equation}
+        由上两式我们能推导出$(u,v)\notin E_f$。若不然，即$(u,v)\in E_f$，则有
+        \begin{align*}
+            \delta_f(s,v) &\le \delta_f(s,u)+1 &\text{依据三角形不等式} \\
+            &\le \delta_{f'}(s,u) + 1 &\text{依据 \eqref{Ineq:1} 式}\\
+            &= \delta_{f'}(s,v) &\text{依据 \eqref{Eq:1} 式}
+        \end{align*}
+        这与$\delta_{f'}(s,v) < \delta_f(s,v)$矛盾。
+
+        由$(u,v)\notin E_f$且$(u,v)\in E_{f'}$，我们可以推知在$G_f$上所选的那条增广路一定经过了边$(v,u)$。因此有
+        \begin{align*}
+            \delta_f(s,v) &= \delta_f(s,u) - 1  \\
+            &\le\delta_{f'}(s,u) - 1 & \text{（根据 \eqref{Ineq:1} 式）}\\
+            &=\delta_{f'}(s,v) - 2 & \text{（根据 \eqref{Eq:1} 式）}
+        \end{align*}
+        这与我们的假设$\delta_{f'}(s,v) < \delta_f(s,v)$相矛盾。
     \end{proof}
 
+    \begin{theorem}
+        在流网络$G=(V,E,c,s,t)$上，Edmonds-Karp算法的总增广次数为$O(VE)$。
+    \end{theorem}
+    \begin{proof}
+        设$p$为残量网络$G_f$中的一条增广路，$(u,v)$为$p$上的一条边。若有$c_f(p) = c_f(u,v)$，则称$(u,v)$为$p$的瓶颈边。不难看出，(i)沿着$p$增广后，$p$上的瓶颈边都消失了；(ii) $p$上至少有一条瓶颈边。下面我们证明：图$G$中每条边是瓶颈边的次数至多为$|V|/2$。
+
+        令$(u,v)$为图$G$中的一条边。当$(u,v)$首次成为瓶颈边时，我们有
+        \[
+        \delta_f(s,v) = \delta_f(s,u) + 1 .
+        \]
+        增广之后，边$(u,v)$从残余网络中消失。下一次$(u,v)$出现在残量网络中，必然是在某次$(v,u)$出现在增广路上之后。设上述「$(v,u)$成为增广路上的边」这一情况发生时$G$上的流为$f'$，则有
+        \[
+        \delta_{f'}(s,u) = \delta_{f'}(s,v) + 1.
+        \]
+        根据引理 \ref{Lemma:1} 有 $\delta_f(s,v)\le\delta_{f'}(s,v)$，因而有
+        \begin{align*}
+            \delta_{f'}(s,u) &= \delta_{f'}(s,v) + 1 \\
+            &\ge \delta_f(s,v) + 1 \\
+            &= \delta_f(s,u) + 2 .
+        \end{align*}
+
+        所以从某次$(u,v)$成为瓶颈边到$(u,v)$下一次成为瓶颈边，从源点$s$到$u$的距离至少增加$2$。初始时$s$到$u$的距离至少为$0$。从$s$到$u$的最短路上的中间节点必定不包含$s$，$u$ 或者$t$（边$(u,v)$在最短路上蕴含着$u\ne t$）。因此，只要$s\leadsto u$的路径存在，$s$到$u$的距离至多为$|V|-2$。所以在$(u,v)$首次陈伟瓶颈边之后，它最多还能在成为$(|V|-2)/2=|V|/2-1$次瓶颈边，共计$|V|/2$次。又由于在残量网络上有$O(E)$对点之间可能有边相连，在Edmonds-Karp算法运行过程中瓶颈边的总数是$O(VE)$的。
+    \end{proof}
     \subsection{Dinic算法}
     \subsection{ISAP算法}
     \subsection{网络流的建图}
