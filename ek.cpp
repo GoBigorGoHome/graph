@@ -3,7 +3,7 @@
 const int N = 1e5 + 5, M = 1e5 + 5;
 struct Edge{
     int v, rc, next;    //rc: residual capacity
-}E[M*2];
+}E[M * 2];
 int head[N], sz;
 void add_edge(int u, int v, int c){
     E[sz] = {v, c, head[u]};
