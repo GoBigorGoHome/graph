@@ -188,19 +188,24 @@
     \subsubsection*{分层图}
     设$f$是网络$G$上的一个流，以$s$为起点对$G_f$做一次BFS，将$s$到$u$的距离记作$\mathrm{level}(u)$。$G_f$的分层图$G'_f$是由$G_f$所导出的一个流网络。$G'_f$定义为
     \[
-    G'_f =(V, E'_f, c_f, s, t)
+    G'_f =(V, E'_f, c'_f, s, t)
     \]
     其中
-    \[
-    E'_f = \{(u,v)\in E_f\colon \mathrm{level}(v) = \mathrm{level}(u)+1\}
-    \]
+    \begin{align*}
+        E'_f &= \{(u,v)\in E_f\colon \mathrm{level}(v) = \mathrm{level}(u)+1\} \\
+        c'_f(u,v) &=\begin{cases}
+        c_f(u,v), & (u,v)\in E'_f;\\
+        0, & (u,v)\notin E'_f.\end{cases}
+    \end{align*}
     简记作$G'_f =(V, E'_f)$。
     \subsubsection{阻塞流}
     首先要指出的是，由$G_f$所导出的分层图$G'_f$完全符合\S\ref{notations} 中流网络的定义（$G'_f$与$G_f$不同的地方在于$G'_f$中一定不含有反向边）。此外，不难看出$G'_f$中的任意一条$s\leadsto t$路径都是$s\leadsto t$最短路。
 
     设$f$是网络$G=(V,E)$上的一个流，$(u,v)\in E$是$G$上的一条边；若$f(u,v) = c(u,v)$则称边$(u,v)$是\emph{饱和}的。又设$f'$是层次图$G'_f$上的一个流，若$G'_f$中的任意一条$s\leadsto t$路径上都至少一条饱和边，则称$f'$是$G'_f$上的一个阻塞流。注意，$G'_f$上阻塞流未必是$G'_f$上的最大流。
 
-    下面考虑如何构造阻塞流。一个自然的想法便是在不断地在层次图$G'_f$上寻找增广路并沿着找到的增广路增广（由于$G'_f$是$G_f$的子图，将$G'_f$上$s\leadsto t$路径称作增广路是不失严格性的）。
+    下面考虑如何构造阻塞流。前面已经提到，层次图$G'_f$是一个流网络；所以一个自然的想法便是在$G'_f$上不断地DFS寻找增广路\footnote{准确地说应该是「在$G'_f$的残量网络上找增广路」，但我们在$G'_f$要求的是一个阻塞流而不是最大流，无须考虑反向边。}并沿着找到的增广路增广；每次增广至少会使一条边饱和，所以增广次数是有限的。在分层图上找到一条$s\leadsto t$增广路的复杂度是$O(m)$，而增广路的数量也是$O(m)$的，所以朴素地实现上述过程的复杂度是$O(m^2)$。
+    %（由于$G'_f$是$G_f$的子图，将$G'_f$上$s\leadsto t$路径称作增广路是不失严格性的）
+
     \subsection{ISAP算法}
     \subsection{网络流的建图}
     \section{费用流}
