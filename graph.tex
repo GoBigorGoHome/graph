@@ -181,8 +181,8 @@
 
     我们可以通过BFS在$O(E)$的时间内在残量网络上找到一条$s\leadsto t$最短路，因此Edmonds-Karp算法的时间复杂度为$O(VE^2)$。严格说来，BFS的时间复杂度应为$O(V+E)$；但是在流网络$G$中一个点应至少有一条边与其相连（孤立的点是无意义的）所以我们有$|V|\le2|E|$。
     \subsection{Dinic算法}
-    Dinic算法是对Edmonds-Karp算法的改进，它的时间复杂度是$O(n^2m)$\footnote{在\S\ref{notations} 中，我们约定了$n=|V|$，$m=|E|$。}。下面给出Dinic算法的的代码，其中图的表示部分与Edmonds-Karp算法的代码相同，故略去。
     \lstinputlisting{code/dinic.cpp}
+    Dinic算法是对Edmonds-Karp算法的改进，它的时间复杂度是$O(n^2m)$\footnote{在\S\ref{notations} 中，我们约定了$n=|V|$，$m=|E|$。}。下面给出Dinic算法的的代码，其中图的表示部分与Edmonds-Karp算法的代码相同，故略去。
 
     先介绍Dinic算法用到的两个概念：分层图（level graph）和阻塞流（blocking flow）。
     \subsubsection*{分层图}
@@ -219,7 +219,7 @@
     多路增广是指DFS到$t$点后不一直向上回溯到源点$s$，而是一旦回溯到$c_f(v)>0$的点$v$就从$v$继续向下递归。这里所说的「一旦回溯到$c_f(v)>0$的点$v$」也就是找到的$s\leadsto t$增广路上距离$s$点最近的\emph{饱和边}的起点。把$c_f(v)$也作为DFS的参数，即调用DFS($v$, $c_f(v)$)。当$c_f(v)$变为$0$时就终止DFS($v$, $c_f(v)$)过程。
 
     \subsubsection*{小结}
-    借助分层图这一概念，我们可以很直观地理解引理\ref{Lemma:1}。Dinic算法的过程就是不断的构造阻塞流，并用阻塞流来增广原来的流$f$；不难看出每次用阻塞流增广之后，残量网络上的最短$s\leadsto t$路径的长度严格递增，所以Dinic算法最多构造$n-1$次阻塞流，因而复杂度为$O(n^2m)$。这个复杂度上界是比较松的，Dinic算法的速度能满足大部分实际问题的要求。
+    借助分层图这一概念，我们可以很直观地理解引理\ref{Lemma:1}。Dinic算法的过程就是不断的构造阻塞流，并用阻塞流来增广原来的流$f$；不难看出每次用阻塞流增广$f$之后，残量网络上的最短$s\leadsto t$路径的长度严格递增，所以Dinic算法最多构造$n-1$次阻塞流，因而复杂度为$O(n^2m)$。这个复杂度上界是比较松的，Dinic算法的速度能满足大部分实际问题的要求。
 
     %（由于$G'_f$是$G_f$的子图，将$G'_f$上$s\leadsto t$路径称作增广路是不失严格性的）
 
