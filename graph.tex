@@ -5,6 +5,7 @@
 % \usepackage{amstext} % \text
 \newtheorem{theorem}{定理}
 \newtheorem{lemma}{引理}
+\newtheorem{property}{性质}
 \usepackage{listings}
 \lstset{language=C++, basicstyle=\ttfamily, frame=lines}
 \newcommand{\idx}{\mathrm{idx}}
@@ -213,7 +214,7 @@
     \subsubsection*{当前边优化}
     对层次图中的每个节点$u$维护一个当前边，初始时初始时$u$的当前边为$u$的邻接边表中的第一条边。每次DFS到点$u$时，从$u$的当前边，设为$(u,v)$，向下递归。若DFS($v$)未找到从$v$到汇点$t$ 的路径，就把$u$的当前边变为$u$的邻接边表中的下一条边，这相当于将边$(u,v)$从层次图中删除；若找到了到$t$的路径就一路回溯。
 
-    我们来分析这种方法构造阻塞流的复杂度。整个过程的复杂度可以化归为调用DFS($v$)的次数。若DFS($v$)的返回值为「找到了路径」则这种调用以$l$个为一组（$l$为分层图的层数），每次找到一条$s\leadsto t$路径至少使一条边饱和，这种调用至多有$lm\le nm$次。若DFS($v$)的返回值为「未找到路径」则有一条边被删除，故这种调用不超过$m$次。所以构造阻塞流的复杂度为$O(nm)$。
+    我们来分析这种方法构造阻塞流的复杂度。整个过程的复杂度可以化归为调用DFS($v$)的次数。若DFS($v$)的返回值为「找到了路径」则这种调用以$l$个为一组（$l$为分层图的层数），每次找到一条$s\leadsto t$路径至少使一条边饱和，这种调用至多有$lm\le nm$次\footnote{残量网络$G_f$中最多有$2m$条边，但是边$(u,v)$和边$(v,u)$不可能同时出现在层次图$G'_f$中，所以$G'_f$中至多有$m$条边。}。若DFS($v$)的返回值为「未找到路径」则有一条边被删除，故这种调用不超过$m$次。所以构造阻塞流的复杂度为$O(nm)$。
     \subsubsection*{多路增广}
     用$c_f(v)$表示DFS到$v$点时从$s$到$v$所经过的边的残余容量的最小值，$c_f(s) = \infty$。
     多路增广是指DFS到$t$点后不一直向上回溯到源点$s$，而是一旦回溯到$c_f(v)>0$的点$v$就从$v$继续向下递归。这里所说的「一旦回溯到$c_f(v)>0$的点$v$」也就是找到的$s\leadsto t$增广路上距离$s$点最近的\emph{饱和边}的起点。把$c_f(v)$也作为DFS的参数，即调用DFS($v$, $c_f(v)$)。当$c_f(v)$变为$0$时就终止DFS($v$, $c_f(v)$)过程。
@@ -224,6 +225,28 @@
     %（由于$G'_f$是$G_f$的子图，将$G'_f$上$s\leadsto t$路径称作增广路是不失严格性的）
 
     \subsection{ISAP算法}
+    ISAP是Improved Shortest Augmenting Path的缩写。与Dinic算法一样，ISAP算法也是一种最短增广路算法；ISAP算法中引入了一些新的概念，下面一一介绍。
+    \subsubsection*{距离标号}
+    设$G(V,E,c,s,t)$是一个流网络，$f$是$G$上的一个流。在残量网络$G_f=(V,E_f)$上，我们定义一个距离函数$d\colon V\to\mathbb{N}$。若函数$d$满足下面两个条件则称$d$为合法的距离函数：
+    \begin{enumerate}
+        \item $d(t) = 0$;
+        \item $\forall (u,v)\in E_f, d(u) \le d(v) +1$.
+    \end{enumerate}
+    我们把$d(u)$称作节点$u$的距离标号，上述两条件称作合法条件。
+    \begin{property}
+        若距离函数$d$合法，则距离标号$d(u)$是残量网络$G_f$上从$u$到$t$的距离的一个下界。
+    \end{property}
+    令$v=v_0\to v_1 \to\dots\to v_{k-1}\to v_k$为$G_f$上任意一条从$v$到$t$的长为$k$的路径。合法条件蕴含着
+    \begin{align*}
+        d(v_{k-1})&\le d(v_k)+1 = d(t)+1=1,\\
+        d(v_{k-2})&\le d(v_{k-1})+1\le 2,\\
+         &\vdots\\
+        d(v) = d(v_0)&\le d(v_1) + 1 \le k.
+    \end{align*}
+    \begin{property}
+        若$d(s)\ge n$则残余网络$G_f$中没有从源点$s$到汇点$t$的路径。
+    \end{property}
+    由于$d(s)$是$G_f$上从$s$到$t$的距离的一个下界，又$\delta_f(s,t)\le n-1$，所以$d(s)\ge n$意味着$G_f$上不存在$s\leadsto t$路径。
     \subsection{网络流的建图}
     \section{费用流}
     \section{二分图}
