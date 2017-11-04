@@ -1,4 +1,4 @@
-\documentclass{ctexbook}
+\documentclass[hyperref]{ctexbook}
 \usepackage{amsmath}
 \usepackage{amsthm} % proof
 \usepackage{amssymb} % \mathbb
@@ -220,14 +220,14 @@
     多路增广是指DFS到$t$点后不一直向上回溯到源点$s$，而是一旦回溯到$c_f(v)>0$的点$v$就从$v$继续向下递归。这里所说的「一旦回溯到$c_f(v)>0$的点$v$」也就是找到的$s\leadsto t$增广路上距离$s$点最近的\emph{饱和边}的起点。把$c_f(v)$也作为DFS的参数，即调用DFS($v$, $c_f(v)$)。当$c_f(v)$变为$0$时就终止DFS($v$, $c_f(v)$)过程。
 
     \subsubsection*{小结}
-    借助分层图这一概念，我们可以很直观地理解引理\ref{Lemma:1}。Dinic算法的过程就是不断的构造阻塞流，并用阻塞流来增广原来的流$f$；不难看出每次用阻塞流增广$f$之后，残量网络上的最短$s\leadsto t$路径的长度严格递增，所以Dinic算法最多构造$n-1$次阻塞流，因而复杂度为$O(n^2m)$。这个复杂度上界是比较松的，Dinic算法的速度能满足大部分实际问题的要求。
+    借助分层图这一概念，我们可以很直观地理解引理 \ref{Lemma:1}。Dinic算法的过程就是不断的构造阻塞流，并用阻塞流来增广原来的流$f$；不难看出每次用阻塞流增广$f$之后，残量网络上的最短$s\leadsto t$路径的长度严格递增，所以Dinic算法最多构造$n-1$次阻塞流，因而复杂度为$O(n^2m)$。这个复杂度上界是比较松的，Dinic算法的速度能满足大部分实际问题的要求。
 
     %（由于$G'_f$是$G_f$的子图，将$G'_f$上$s\leadsto t$路径称作增广路是不失严格性的）
 
     \subsection{ISAP算法}
-    ISAP是Improved Shortest Augmenting Path的缩写。与Dinic算法一样，ISAP算法也是一种最短增广路算法；ISAP算法中引入了一些新的概念，下面一一介绍。
+    ISAP是Improved Shortest Augmenting Path的缩写，ISAP算法来源于R.K. Ahuja，T.L. Magnanti和J.B. Orlin在他们的著作\emph{Network Flows: Theory, Algorithms, and Applications} \S7.4 shortest augmenting path algorithm中提出的一个对SAP算法的优化。我们先介绍SAP算法，然后再介绍优化方法。顾名思义，与Dinic算法一样，ISAP算法也是一种最短增广路算法；ISAP算法中引入了一些新概念，下面一一介绍。
     \subsubsection*{距离标号}
-    设$G(V,E,c,s,t)$是一个流网络，$f$是$G$上的一个流。在残量网络$G_f=(V,E_f)$上，我们定义一个距离函数$d\colon V\to\mathbb{N}$。若函数$d$满足下面两个条件则称$d$为合法的距离函数：
+    设$G(V,E,c,s,t)$是一个流网络，$f$是$G$上的一个流。在残量网络$G_f=(V,E_f)$上，我们定义一个距离函数$d\colon V\to\mathbb{N}$。若函数$d$满足下面两个条件，则称$d$为合法的距离函数：
     \begin{enumerate}
         \item $d(t) = 0$;
         \item $\forall (u,v)\in E_f, d(u) \le d(v) +1$.
@@ -247,6 +247,21 @@
         若$d(s)\ge n$则残余网络$G_f$中没有从源点$s$到汇点$t$的路径。
     \end{property}
     由于$d(s)$是$G_f$上从$s$到$t$的距离的一个下界，又$\delta_f(s,t)\le n-1$，所以$d(s)\ge n$意味着$G_f$上不存在$s\leadsto t$路径。
+
+    若对每个点$u\in V$都有$\delta_f(u,t)=d(u)$，则称距离标记是准确的。
+    \subsubsection*{允许边和允许路径}
+    若边$(u,v)\in E_f$满足$d(u)=d(v)+1$则称$(u,v)$为允许边，否则称为非允许边。若$G_f$的一条$s\leadsto t$路径$p$完全由可行边构成，则称$p$为允许路径。显然有
+    \begin{property}
+        可行路径是一条最短增广路。
+    \end{property}
+
+    \subsubsection*{SAP算法}
+    SAP算法的思想与Dinic算法类似\footnote{这里所谓「类似」是指level($u$)与$d(u)$的意义有相似之处；但仍应注意层次图$G'_f$上的边和残余网络$G_f$中的可行边这两个概念的区别：若令$d(u)=\mathrm{level}(u)$，则层次图上的边一定是可行边；反过来不成立。}。确定一个初始的合法的距离标号，SAP算法重复下述过程，直到残量网络上不存在$s\leadsto t$路径（即增广路）：
+
+    从$s$开始，沿着允许边DFS，试图到达$t$；若能到达$t$，则沿着找到的最短增广路增广，在新的残量网络上继续DFS。与Dinic算法不同的是，若DFS到$u$点之后无法继续前进，则增大$u$的距离标号，将$d(u)$更新为$\min\{d(v)+1\colon (u,v)\in E_f\}$，这一操作称作\emph{重标号}；然后回溯。下面给出SAP算法的代码：
+    \lstinputlisting{code/sap.cpp}
+    %DFS走过一条允许边称作\emph{前进}（advance）；回溯一步称作\emph{回退}（retreat）。
+
     \subsection{网络流的建图}
     \section{费用流}
     \section{二分图}
