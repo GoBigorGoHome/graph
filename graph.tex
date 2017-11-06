@@ -156,7 +156,7 @@
       这与我们的假设$\delta_{f'}(s,v) < \delta_f(s,v)$相矛盾。
   \end{proof}
 
-  \begin{theorem}
+  \begin{theorem}\label{T:number-of-augmentations}
       在流网络$G=(V,E,c,s,t)$上，Edmonds-Karp算法的总增广次数为$O(VE)$。
   \end{theorem}
   \begin{proof}
@@ -225,14 +225,14 @@
   %（由于$G'_f$是$G_f$的子图，将$G'_f$上$s\leadsto t$路径称作增广路是不失严格性的）
 
   \subsection{ISAP算法}
-  ISAP是Improved Shortest Augmenting Path的缩写，ISAP算法来源于R.K. Ahuja，T.L. Magnanti和J.B. Orlin在他们的著作\emph{Network Flows: Theory, Algorithms, and Applications} \S7.4 shortest augmenting path algorithm中提出的一个对SAP算法的优化。我们先介绍SAP算法，然后再介绍优化方法。顾名思义，与Dinic算法一样，ISAP算法也是一种最短增广路算法；ISAP算法中引入了一些新概念，下面一一介绍。
+  ISAP是Improved Shortest Augmenting Path的缩写，ISAP算法来源于R.K. Ahuja，T.L. Magnanti和J.B. Orlin三人合著的\emph{Network Flows: Theory, Algorithms, and Applications}一书的\S 7.4 shortest augmenting path algorithm中提到的对SAP算法的一个优化。我们先介绍SAP算法，然后再介绍此优化方法。顾名思义，ISAP算法也是一种最短增广路算法；ISAP算法中引入了一些新概念，下面一一介绍。
   \subsubsection*{距离标号}
   设$G(V,E,c,s,t)$是一个流网络，$f$是$G$上的一个流。在残量网络$G_f=(V,E_f)$上，我们定义一个距离函数$d\colon V\to\mathbb{N}$。若函数$d$满足下面两个条件，则称$d$为合法的距离函数：
   \begin{enumerate}
       \item $d(t) = 0$;
       \item $\forall (u,v)\in E_f, d(u) \le d(v) +1$.
   \end{enumerate}
-  我们把$d(u)$称作节点$u$的距离标号，上述两条件称作合法条件。
+  我们把$d(u)$称作节点$u$的\emph{距离标号}，上述两条件称作合法条件。
   \begin{property}\label{P:lower_bound}
       若距离函数$d$合法，则距离标号$d(u)$是残量网络$G_f$上从$u$到$t$的距离的一个下界。
   \end{property}
@@ -262,20 +262,31 @@
   \lstinputlisting{code/sap.cpp}
   %DFS走过一条允许边称作\emph{前进}（advance）；回溯一步称作\emph{回退}（retreat）。
   \subsubsection{SAP算法的正确性}
-  不难验证：(i)重标号操作使一个点的距离标号严格增大；(ii)增广和重标号这两种操作能维持距离标号的合法性。再结合性质\ref{P:lower_bound}，可以推出：(i) SAP算法能在有限次重标号操作之后找到一条增广路；(ii) SAP算法能在有限次重标号和增广之后求出一个最大流。
+  不难验证：(i)重标号操作使一个点的距离标号严格增大；(ii)增广和重标号这两种操作能维持距离标号的合法性。再结合性质\ref{P:lower_bound}，可以推出：(i) SAP算法能在有限次重标号操作之后找到一条最短增广路；(ii) SAP算法能在有限次重标号和增广之后求出一个最大流。
   %要证明SAP算法的正确性只要证明增广和重标号这两种操作能保证距离标号的合法性。首先，不难看出重标号操作使一个点的距离标号严格增大。先考虑增广操作，设边$(u,v)$在SAP算法找到的某条增广路上，若$(v,u)$是增广之后新出现在残量网络上的边，$d(u)\le d(v)+1$蕴含着$d(v)\le d(u)+1$。再考虑重标号操作，我们只要证明在重标号操作修改了$d(u)$之后，$u$的所有入边仍是允许边（$u$的所有出边在重标号之后显然仍满足合法条件）。
   \subsubsection{SAP算法的复杂度}
-  首先考虑枚举点的出边寻找允许边的总复杂度。观察代码可以发现：
+  SAP算法的复杂度可分成三部分考虑：
+  \begin{enumerate}
+    \item 检查点的出边是否为允许边
+    \item 重标号
+    \item 增广
+  \end{enumerate}
+
+  注意到(i)对点$u$重标号的前提是遍历$u$的出边而未找到允许边；(ii)对$u$重标号的复杂度即遍历$u$的出边的复杂度。所以重标号的总复杂度不超过检查点的出边是否为允许边的复杂度。
+
+  首先考虑枚举点的出边检查其是否允许边的总复杂度。观察代码不难发现：
   \begin{property}
-    若SAP算法对每个点重标号不超过$k$次，则检查点的出边是否为允许边的总次数不超过$k\sum\limits_{u\in V}|E(u)|=O(km)$。其中$E(u)=\{(v,w)\in E\colon v= u \text{ 或}\ w = u\}$。
+    若SAP算法对每个点重标号不超过$k$次，则「检查点的出边是否为允许边」的总次数不超过$k\sum\limits_{u\in V}|E(u)|=O(km)$。其中$E(u)=\{(v,w)\in E\colon v= u \text{ 或}\ w = u\}$。
   \end{property}
-  再考虑沿着增广路增广的总复杂度。有下面引理：
-  \begin{lemma}
-    若SAP算法对每个点重标号不超过$k$次，瓶颈边的总数不超过$km/2$。
-  \end{lemma}
-  \begin{proof}
-    下面我们将证明边$(u,v)$在残量网络上
-  \end{proof}
+  另外注意到，每次对点$u$重标号之前我们已经找到了一条完全由允许边组成的$s\leadsto u$路径，从而有$d(u)\le d(s)< n$；又重标号之后$d(u)$至少增加$1$，所以$u$经历过至多$n$次重标号。综上可得，「检查某点的出边是否为允许边」这一操作一共进行了$O(nm)$次。
+
+  再考虑沿着增广路增广的总复杂度。采用定理\ref{T:number-of-augmentations} 的证明思路，我们可以证明：
+  \begin{theorem}
+    SAP算法的增广次数为$O(nm)$。
+  \end{theorem}
+  因为一次增广的复杂度为$O(n)$，所以增广的总复杂度为$O(n^2m)$。综上所述，SAP算法的复杂度为$O(n^2m)$。
+  \subsubsection{优化}
+
   \subsection{网络流的建图}
   \section{费用流}
   \section{二分图}
