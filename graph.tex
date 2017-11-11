@@ -79,7 +79,9 @@
   增广路方法即，从图$G$上的某个初始流$f$（比如零流）开始，在$G_f$找一条增广路$p$；沿着$p$增广，更新$f$和$G_f$；如此循环，直到$G_f$上找不到增广路。此时$f$便是$G$上的一个最大流。下面要介绍的最大流最小割定理证明了增广路方法的正确性。
   \subsubsection*{流网络的割}
   为了给出最大流最小割定理，我们先介绍割的概念。
-  将流网络$G=(V,E)$的点集$V$划分成两个子集$S$和$T=V-S$使得$s\in S$且$t\in T$，$(S,T)$称作$G$的一个割。令$f$为$G$上的一个流，割$(S,T)$之间的\emph{净流}$f(S,T)$定义为
+  将流网络$G=(V,E)$的点集$V$划分成两个子集$S$和$T=V-S$使得$s\in S$且$t\in T$，$(S,T)$称作$G$的一个割或者$s$-$t$割。另外，也可以将割定义成两端点分属$S$和$T$的边的集合。将满足$u\in S$且$v\in T$的边$(u,v)$称作割$(S,T)$的\emph{前向边}（forward edge），将满足$u\in T$且$v\in S$的边$(u,v)$称作割$(S,T)$的\emph{后向边}（backward edge）。
+
+  令$f$为$G$上的一个流，割$(S,T)$之间的\emph{净流}$f(S,T)$定义为
   \[
   f(S,T) = \sum_{u\in S}\sum_{v\in T}f(u,v) - \sum_{u\in S}\sum_{v\in T}f(v,u)
   \]
@@ -314,23 +316,40 @@
   \subsubsection*{从割的角度建图}
   从割的角度考虑，通常的思路是用有向边表示一个二元关系，我们要在满足一组二元关系的条件下求解一个最优化问题。下面以有向图的\emph{最大权闭包}（maximum weight closure）问题为例，介绍最小割建模。
   \begin{example}[最大权闭合子图]
-  设$G=(V,E)$是一个有向图，若$V_1\subseteq V$满足：$\forall (u,v) \in E$，$u\in V_1 \Rightarrow v\in V_1$，则称$V_1$是$G$的一个闭包。给图$G$每个节点$u$赋一个权值$w(u)\in \mathbb{Z}$，点集$X\subseteq V$的权值$w(X)$定义为$w(X)=\sum_{v\in X}w(v)$；最大权闭包问题即，求$G$的一个权值最大的闭包。
+  设$G=(V,E)$是一个有向图，若$V_1\subseteq V$满足：$\forall (u,v) \in E$，$u\in V_1 \Rightarrow v\in V_1$，则称$V_1$是$G$的一个闭包，图\ref{Fig:closure} 给出了一个例子。给图$G$每个节点$u$赋一个权值$w(u)\in \mathbb{Z}$，点集$X\subseteq V$的权值$w(X)$定义为$w(X)=\sum_{v\in X}w(v)$；最大权闭包问题即，求$G$的一个权值最大的闭包。
+  \begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{figures/closure}
+    \caption{有向图的闭包。$\{2,5\}$，$\{1,2,4,5\}$，$\{3,4,5\}$都是闭包。}
+    \label{Fig:closure}
+  \end{figure}
 \end{example}
   我们可以将最大权闭包问题转化成最小割问题。引入源点$s$和汇点$t$，从$s$向每个权值为正的点$u$连一条容量为$w(u)$的边，从每个权值为负的点$u$向$t$连一条容量为$-w(u)$的边，将原图中的边的容量设为$\infty$（这里，$\infty$是指一个大于$\sum_{v\in V}|w(v)|$的值）。将所得流网络记做$G'=(V',E')$。
 
-  设$(S,T)$是网络$G'$的一个割，若边$(u,v)$满足$u\in S,v\in T$或$u\in T, v\in S$则称$(u,v)$为割边；若对任意割边$(u,v)$都有$u\in S$或$v\in T$则称$(S,T)$为简单割。不难证明，有向图$G$的闭包和网络$G'$的简单割一一对应。读者可自行验证，(i)若$V_1$是$G$的一个闭包，令$S=\{s\}\cup V_1$，则$(S,\bar{S})$是$G'$的一个简单割；(ii)若$(S,\bar{S})$是$G'$的一个简单割，令$V_1=S-s$，则$V_1$是$G$的一个闭包。
-
-  我们来考虑简单割$(S,\bar{S})$的容量$c(S,\bar{S})$和$G$的闭包$V_1=S-s$的权值$w(V_1)$之间的关系。设$V_1$中权值为正的点的集合为$V_1^+$，权值为负的点的集合为$V_1^-$，我们有
+  设$(S,T)$是网络$G'$的一个割。若$(S,T)$的任意前项边$(u,v)$都满足$u\in S$或$v\in T$，则称$(S,T)$为\emph{简单割}（simple cut）。不难证明，有向图$G$的闭包和网络$G'$的简单割一一对应。读者可自行验证，(i)若$V_1$是$G$的一个闭包，令$S=\{s\}\cup V_1$，则$(S,\bar{S})$是$G'$的一个简单割；(ii)若$(S,\bar{S})$是$G'$的一个简单割，令$V_1=S-s$，则$V_1$是$G$的一个闭包。
+  \begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{figures/simple-cut}
+    \caption{简单割示意。}
+    \label{Fig:simple-cut}
+  \end{figure}
+  我们来考虑简单割$(S,\bar{S})$的容量$c(S,\bar{S})$和$G$的闭包$V_1=S-s$的权值$w(V_1)$之间的关系。设$V_1$中权值为正的点的集合为$V_1^+$，权值为负的点的集合为$V_1^-$，令$V_2=V-V_1$，类似地定义$V_2^+$、$V_2^-$；我们有
   \begin{align*}
-    c(S,\bar{S}) &=\sum_{v\in V_1^+}c(s,v) +\sum_{v\in V_1^-}c(v,t)\\  
-    &=w(V_1^+)-w(V_1^-)
+    w(V_1) &=w(V_1^+) + w(V_1^-)\\
+    c(S,T) &= \sum_{u\in V_2^+}c(s,u) + \sum_{u\in V_1^-}c(u,t)\\
+    % &= \sum_{u\in V_2^+}w(u) - \sum_{u\in V_1^-}w(u)
+    &= w(V_2^+) - w(V_1^-)
   \end{align*}
-  \section{费用流}
+  从而
+  \[ w(V_1) + c(S,T) = w(V_1^+) + w(V_2^+) = w(V^+)= \mathrm{const}\]
+  其中，$V^+$表示$V$中权值为正的点的集合；$w(V_1)$最大即$c(S,T)$最小，又图$G$中的边的容量都为$\infty$，故$G'$的最小割一定是简单割；这样我们就把最大权闭包问题转化成了最小割问题。
+  \section{最小费用最大流}
+  在最大流问题的基础上，我们来讨论最小费用最大流问题。
   \section{二分图}
   \subsection{最大流和二分图}
   \subsection{匈牙利算法}
   \subsection{二分图模型应用}
-  \section{图的连通}
+  \section{图的连通性}
   \subsection{强连通-Tarjan算法}
   \subsection{双连通}
   \subsection{2-SAT问题}
