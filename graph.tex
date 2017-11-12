@@ -11,6 +11,7 @@
 \usepackage{listings}
 \lstset{language=C++, basicstyle=\ttfamily, frame=lines}
 \newcommand{\idx}{\mathrm{idx}}
+\newcommand{\cost}{\mathrm{cost}}
 
 \begin{document}
   \chapter{图论高级算法}
@@ -229,7 +230,7 @@
   %（由于$G'_f$是$G_f$的子图，将$G'_f$上$s\leadsto t$路径称作增广路是不失严格性的）
 
   \subsection{ISAP算法}
-  ISAP是Improved Shortest Augmenting Path的缩写，ISAP算法来源于R.K. Ahuja，T.L. Magnanti和J.B. Orlin三人合著的\emph{Network Flows: Theory, Algorithms, and Applications}一书的\S 7.4 shortest augmenting path algorithm中提到的对SAP算法的一个优化。我们先介绍SAP算法，然后再介绍此优化方法。顾名思义，ISAP算法也是一种最短增广路算法；ISAP算法中引入了一些新概念，下面一一介绍。
+  ISAP是Improved Shortest Augmenting Path的缩写，ISAP算法来源于R. K. Ahuja，T. L. Magnanti和J. B. Orlin三人合著的\emph{Network Flows: Theory, Algorithms, and Applications}一书的\S 7.4 shortest augmenting path algorithm中提到的对SAP算法的一个优化。在介绍此优化方法之前，我们先介绍SAP算法。顾名思义，SAP算法也是一种最短增广路算法；SAP算法中引入了一些新概念，下面一一介绍。
   \subsubsection*{距离标号}
   设$G(V,E,c,s,t)$是一个流网络，$f$是$G$上的一个流。在残量网络$G_f=(V,E_f)$上，我们定义一个距离函数$d\colon V\to\mathbb{N}$。若函数$d$满足下面两个条件，则称$d$为合法的距离函数：
   \begin{enumerate}
@@ -237,6 +238,9 @@
       \item $\forall (u,v)\in E_f, d(u) \le d(v) +1$.
   \end{enumerate}
   我们把$d(u)$称作节点$u$的\emph{距离标号}，上述两条件称作合法条件。
+  \begin{property}
+    若距离函数$d$合法，设$p$是残量网络$G_f$上的$u\leadsto t$路径，则$p$上的点的距离标号的集合由从零开始的若干连续自然数组成。
+  \end{property}
   \begin{property}\label{P:lower_bound}
       若距离函数$d$合法，则距离标号$d(u)$是残量网络$G_f$上从$u$到$t$的距离的一个下界。
   \end{property}
@@ -262,7 +266,7 @@
   \subsubsection*{SAP算法}
   SAP算法的思想与Dinic算法类似\footnote{这里所谓「类似」是指level($u$)与$d(u)$的意义有相似之处；但仍应注意分层图$G'_f$上的边和残余网络$G_f$中的可行边这两个概念的区别：若令$d(u)=\mathrm{level}(u)$，则分层图上的边一定是可行边；反过来不成立。}。确定一个初始的合法距离标号，SAP算法重复「DFS找可行路径」的过程，直到残量网络上不存在$s\leadsto t$路径。DFS由前进（advance）、后退（retreat）和重标号（relabel）三种操作构成，详述如下：
 
-  从$s$开始，沿着允许边走，试图到达$t$；若能到达$t$，则沿着找到的最短增广路增广，在新的残量网络上继续寻找允许路径。与Dinic算法不同的是，若走到$u$点之后无法继续\emph{前进}，即没有以$u$为起点的可行边，则增大$u$的距离标号，将$d(u)$更新为$\min\{d(v)+1\colon (u,v)\in E_f\}$，这一操作称作\emph{重标号}；然后\emph{后退}一步继续寻找可行边。上述DFS过程采用递归实现比较方便，但顾及效率，下面我们给出SAP算法的迭代实现。在迭代实现中，我们需要维护(i)每个点的「当前边」，点$u$的当前边是指走到$u$时要选择的那条出边；(ii)当前找到的「部分可行路径」。
+  从$s$开始，沿着允许边走，试图到达$t$；若能到达$t$，则沿着找到的最短增广路增广，在新的残量网络上继续寻找允许路径。与Dinic算法不同的是，若走到$u$点之后无法继续\emph{前进}，即没有以$u$为起点的可行边，则将$d(u)$增大为$\min\{d(v)+1\colon (u,v)\in E_f\}$，这一操作称作\emph{重标号}；然后\emph{后退}一步继续寻找可行边。上述DFS过程采用递归实现比较方便，但顾及效率，下面我们给出SAP算法的迭代实现。在迭代实现中，我们需要维护(i)每个点的「当前边」，点$u$的当前边是指走到$u$时要选择的那条出边；(ii)当前找到的「部分可行路径」。
   \lstinputlisting{code/sap.cpp}
   %DFS走过一条允许边称作\emph{前进}（advance）；回溯一步称作\emph{回退}（retreat）。
   \subsubsection{SAP算法的正确性}
@@ -299,7 +303,7 @@
     &= \sum_{u\in S}\sum_{v\in T}c(u,v)-\sum_{v\in T}\sum_{u\in S}0\\
     &= c(S,T)
   \end{align*}
-  所以$|f|=f(S,T)=c(S,T)$。
+  所以$|f|=f(S,T)=c(S,T)$。% TODO  证明可简化
 
   下面给出ISAP算法的代码，我们采用逆向BFS求每个点的准确距离标号，其中\texttt{augment}函数与SAP算法中相同，略去。
   \lstinputlisting{code/isap.cpp}
@@ -333,7 +337,7 @@
     \caption{简单割示意。}
     \label{Fig:simple-cut}
   \end{figure}
-  我们来考虑简单割$(S,\bar{S})$的容量$c(S,\bar{S})$和$G$的闭包$V_1=S-s$的权值$w(V_1)$之间的关系。设$V_1$中权值为正的点的集合为$V_1^+$，权值为负的点的集合为$V_1^-$，令$V_2=V-V_1$，类似地定义$V_2^+$、$V_2^-$；我们有
+  我们来考虑简单割$(S,\bar{S})$的容量$c(S,\bar{S})$和$G$的闭包$V_1=S-s$的权值$w(V_1)$之间的关系。如图\ref{Fig:simple-cut} 所示，设$V_1$中权值为正的点的集合为$V_1^+$，权值为负的点的集合为$V_1^-$，令$V_2=V-V_1$，类似地定义$V_2^+$、$V_2^-$；我们有
   \begin{align*}
     w(V_1) &=w(V_1^+) + w(V_1^-)\\
     c(S,T) &= \sum_{u\in V_2^+}c(s,u) + \sum_{u\in V_1^-}c(u,t)\\
@@ -343,8 +347,31 @@
   从而
   \[ w(V_1) + c(S,T) = w(V_1^+) + w(V_2^+) = w(V^+)= \mathrm{const}\]
   其中，$V^+$表示$V$中权值为正的点的集合；$w(V_1)$最大即$c(S,T)$最小，又图$G$中的边的容量都为$\infty$，故$G'$的最小割一定是简单割；这样我们就把最大权闭包问题转化成了最小割问题。
-  \section{最小费用最大流}
-  在最大流问题的基础上，我们来讨论最小费用最大流问题。
+  \section{最小费用流}
+  在最大流问题的基础上，我们来讨论另一个网络流问题---\emph{最小费用流}（minimum cost flow）问题。在最小费用流问题中，边$(u,v)\in E$除了有容量$c(u,v)$之外还有\emph{费用}$\cost(u,v)\in\mathbb{N}$，表示单位流量流过$(u,v)$的花费。给定流$f$，边$(u,v)$上产生的费用为$\cost(u,v) f(u,v)$，流$f$的费用$\cost(f)$定义为$\cost(f) = \sum_{(u,v)\in E}\cost(u,v)f(u,v)$。最小费用流问题有三种常见的形式：
+  \begin{enumerate}
+    \item 给定费用流网络$G=(V,E,s,t,c,\cost)$，求费用最小的最大流。
+    \item 给定费用流网络$G=(V,E,s,t,c,\cost)$，求一个值为$x$且费用最小的流。
+    \item 最小费用流问题的一般形式。不再区别源点与汇点，每个点$v\in V$都关联了一个值$b(v)\in\mathbb{Z}$，$b(v)>0$代表\emph{供给}（supply），$b(v)<0$代表\emph{需求}（demand）。我们要求一个流$f$使其满足(i)边的容量限制；(ii)点的供需要求；(iii)费用最小。形式化地写成
+    \begin{equation}
+      \min\sum_{{u,v}\in E}\cost(u,v)f(u,v), \label{mcf-obj}
+    \end{equation}
+    subject to
+    \begin{align}
+      \sum_{v\colon(u,v)\in E} f(u,v) &- \sum_{v\colon(v,u)\in E}f(v,u) = b(i) \quad \forall u\in V,\\
+      0\le f(u,v)&\le c(u,v)\quad \forall(u,v)\in E %TODO 让两个公式都居中
+    \end{align}
+  \end{enumerate}
+  不难证明，这三种形式是等价的。下面我们只讨论\emph{最小费用最大流}（min-cost max-flow）问题。
+
+  我们仍然采用增广路方法来求解。
+  不难看出，若$(u,v)\in E$且$(u,v)\in E_f$，那么在残量网络$G_f$上，边$(v,u)$的费用$\cost(v,u)$应为$-\cost(u,v)$。容易想到一个贪心策略：把边的费用视作距离，在$G_f$上总是沿着最短增广路增广。这个想法是正确的，证明从略。% TODO 补上证明
+  这一算法称作\emph{连续最短路算法}（successive shortest path algorithm）。
+  % FIXME 坚持原创 ^-^
+  由于可能有负权边，不能用Dijkstra算法求最短路，而用Bellman-Ford算法。
+  下面给出代码，图的表示与前面介绍的最大流算法的相比只多出了费用\texttt{cost}，\texttt{add\_edge}函数也要做相应的修改，略去不表。
+  \lstinputlisting{code/mcmf.cpp}
+
   \section{二分图}
   \subsection{最大流和二分图}
   \subsection{匈牙利算法}
