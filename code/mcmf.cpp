@@ -1,13 +1,13 @@
-#include <climits>
 int n, m, s, t;
-int pre[N]; // pre[u]: the edeg to node u in partial augmenting path
+int d[N], pre[N]; // pre[u]: the edge to u in augmenting path
 bool inq[N]; // inq[u]: is node u in queue?
-bool Bellman_Ford(int &flow, int &cost){
+using LL = long long;
+LL flow, cost;
+bool bellman_ford(){
   for(int i = 0; i < n; i++) d[i] = INT_MAX;
   memset(inq, 0, sizeof inq);
   d[s] = 0, inq[s] = true, a[s] = INF;
-  for(int i = 0; i < n; i++)
-  queue<int> q;
+  std::queue<int> q;
   q.push(s);
   while(q.size()){
     int u = q.front(); q.pop();
@@ -20,5 +20,20 @@ bool Bellman_Ford(int &flow, int &cost){
       }
     }
   }
+  if(d[t] == INT_MAX) return false;
+  int rc = INT_MAX;
+  for(int u = t; u != s; u = E[pre[u] ^ 1].v){
+    rc = std::min(rc, E[pre[u]].rc);
+  }
+  for(int u = t; u != s; u = E[pre[u] ^ 1].v){
+    E[pre[u]].rc -= rc;
+    E[pre[u] ^ 1].rc += rc;
+  }
+  flow += rc, cost += LL(rc) * d[t];
+  return true;
+}
 
+LL mcmf(){
+  flow = cost = 0;
+  while(bellman_ford());
 }

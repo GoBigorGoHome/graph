@@ -12,7 +12,7 @@
 \lstset{language=C++, basicstyle=\ttfamily, frame=lines}
 \newcommand{\idx}{\mathrm{idx}}
 \newcommand{\cost}{\mathrm{cost}}
-
+\usepackage{subcaption}
 \begin{document}
   \chapter{图论高级算法}
   \section{最大流}
@@ -41,7 +41,7 @@
   $$|f| = \sum_{v\in V}f(s,v) - \sum_{v\in V}f(v,s)\text{，}$$
   最大流问题即在给定的网络$G$中求一个值最大的流。
 
-  \subsection{增广路方法}
+  \subsection{增广路方法}\label{augmenting-path-method}
   增广路方法是求解最大流问题的一种方法。本章要介绍的三个最大流算法都是基于增广路方法的。增广路算法涉及三个重要概念：残量网络，增广路，割。
   \subsubsection*{残量网络}
   给定流网络$G=(V,E,c,s,t)$和$G$上的一个流$f$。残量网络$G_f=(V,E_f,c_f, s, t)$是由$G$和$f$所导出的一个网络，简记作$G_f=(V,E_f)$。首先定义残余容量$c_f$：
@@ -119,7 +119,9 @@
     \item 如何快速地在残量网络$G_f$上找一条增广路。\label{Approach:1}
     \item 如何减少增广的次数。\label{Approach:2}
   \end{enumerate}
-  我们已经知道，通过深度优先搜索（DFS）或宽度优先搜索（BFS）可在线性间内找到一条增广路。
+
+  我们已经知道，通过深度优先搜索（DFS）或宽度优先搜索（BFS）可在$O(V+E)$的时间内找到一条增广路。流网络$G$上的孤立点是无意义的，所以每个点至少有一条边与之相连，故有$|V|\le 2|E|$，因此在$G_f$上找一条增广路的时间复杂度为$O(E)$，从而增广路方法的复杂度不超过$O(|f^*|E)$，$|f^*|$表示最大流的值。
+
   在下一小节中我们将证明，如果每次都沿着\emph{最短增广路}(shortest augmenting path，SAP)增广，那么增广次数是$O(VE)$的。沿着最短增广路增广的算法统称为最短增广路算法。下面三个小节中要介绍的算法都属于最短增广路算法。
   \subsection{Edmonds-Karp算法}
   Edmonds-Karp是SAP算法的朴素实现。代码如下：
@@ -185,7 +187,7 @@
       所以从某次$(u,v)$成为瓶颈边到$(u,v)$下一次成为瓶颈边，从源点$s$到$u$的距离至少增加$2$。初始时$s$到$u$的距离至少为$0$。从$s$到$u$的最短路上的中间节点必定不包含$s$，$u$ 或者$t$（边$(u,v)$在最短路上蕴含着$u\ne t$）。因此，只要$s\leadsto u$的路径存在，$s$到$u$的距离至多为$|V|-2$。所以在$(u,v)$首次成为瓶颈边之后，它最多还能在成为$(|V|-2)/2=|V|/2-1$次瓶颈边，共计$|V|/2$次。又由于在残量网络上有$O(E)$对点之间可能有边相连，在Edmonds-Karp算法运行过程中瓶颈边的总数是$O(VE)$的。
   \end{proof}
 
-  我们可以通过BFS在$O(E)$的时间内在残量网络上找到一条$s\leadsto t$最短路，因此Edmonds-Karp算法的时间复杂度为$O(VE^2)$。严格说来，BFS的时间复杂度应为$O(V+E)$；但是在流网络$G$中一个点应至少有一条边与其相连（孤立的点是无意义的）所以我们有$|V|\le2|E|$。
+  在\S\ref{augmenting-path-method} 的结尾，我们已经指出，通过BFS可在$O(E)$的时间内找到一条最短增广路，因此Edmonds-Karp算法的时间复杂度为$O(VE^2)$。
   \subsection{Dinic算法}
   \lstinputlisting{code/dinic.cpp}
   Dinic算法是对Edmonds-Karp算法的改进，它的时间复杂度是$O(n^2m)$\footnote{在\S\ref{notations} 中，我们约定了$n=|V|$，$m=|E|$。}。下面给出Dinic算法的的代码，其中图的表示部分与Edmonds-Karp算法的代码相同，故略去。
@@ -358,24 +360,67 @@
     \end{equation}
     subject to
     \begin{align}
-      \sum_{v\colon(u,v)\in E} f(u,v) &- \sum_{v\colon(v,u)\in E}f(v,u) = b(i) \quad \forall u\in V,\\
-      0\le f(u,v)&\le c(u,v)\quad \forall(u,v)\in E %TODO 让两个公式都居中
+      \sum_{v\colon(u,v)\in E} f(u,v) &- \sum_{v\colon(v,u)\in E}f(v,u) = b(u) \quad \forall u\in V,\label{Ineq:capacity}\\
+      0\le f(u,v)&\le c(u,v)\quad \forall(u,v)\in E\label{Eq:balance} %TODO 让两个公式都居中
     \end{align}
+    把满足 \eqref{Ineq:capacity} 和 \eqref{Eq:balance} 的流称作\emph{可行流}。
   \end{enumerate}
   不难证明，这三种形式是等价的。下面我们只讨论\emph{最小费用最大流}（min-cost max-flow）问题。
 
   我们仍然采用增广路方法来求解。
   不难看出，若$(u,v)\in E$且$(u,v)\in E_f$，那么在残量网络$G_f$上，边$(v,u)$的费用$\cost(v,u)$应为$-\cost(u,v)$。容易想到一个贪心策略：把边的费用视作距离，在$G_f$上总是沿着最短增广路增广。这个想法是正确的，证明从略。% TODO 补上证明
-  这一算法称作\emph{连续最短路算法}（successive shortest path algorithm）。
+  此算法称作\emph{连续最短路算法}（successive shortest path algorithm）。
   % FIXME 坚持原创 ^-^
   由于可能有负权边，不能用Dijkstra算法求最短路，而用Bellman-Ford算法。
   下面给出代码，图的表示与前面介绍的最大流算法的相比只多出了费用\texttt{cost}，\texttt{add\_edge}函数也要做相应的修改，略去不表。
   \lstinputlisting{code/mcmf.cpp}
-
   \section{二分图}
   \subsection{最大流和二分图}
+  在这一小节我们用最大流模型来解决\emph{二分图最大匹配}（maximum bipartite matching）问题。
+  \subsubsection*{无向图的匹配}
+  设$G=(V,E)$是一个无向图，若边集$M\subset E$满足：对任意节点$v\in V$，$M$中至多有一条边以$v$为端点则称$M$是$G$上的一个\emph{匹配}（matching）。若$v\in V$是$M$中某条边的端点，则称$v$是$M$上的匹配点，否则称为未匹配点。最大匹配即边数最大的一个匹配。
+  \subsubsection*{二分图}
+  二分图是一类特殊的无向图，其点集$V$可划分为两个不相交的子集$L$和$R$使得$E$中每条边的端点分属$L$、$R$。形式化地说，无向图$G=(V,E)$是二分图，当且仅当存在划分$V=L\cup R$使得$E\subseteq L\times R$。
+  \begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.4\linewidth}
+      \centering
+      \includegraphics[scale=0.5]{figures/bipartite-graph}
+      \caption{}
+      % \label{Fig:bipartite}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.4\linewidth}
+      \centering
+      \includegraphics[scale=0.5]{figures/bipartite-network}
+      \caption{}
+    \end{subfigure}
+    \caption{二分图和对应的流网络。}
+    \label{Fig:bipartite-network}
+  \end{figure}
+
+  \subsubsection{二分图的最大匹配}
+  二分图的最大匹配问题可以转化为最大流问题解决。如图\ref{Fig:bipartite-network} 所示，给定二分图$G(V,E)$，$V=L\cup R$，我们可以构造一个流网络$G'=(V',E')$：
+  \begin{align*}
+    V'&=V\cup\{s,t\},\\
+    E'&=\{(s,u)\colon u\in L\}\cup\{(u,v)\colon(u,v)\in E\}\cup\{(v,t)\colon v\in R\}.
+  \end{align*}
+  将$E'$中每条边的容量置为$1$。注意：$E$中的边是无向边而$E'$中的边是有向边。
+
+  不难证明，二分图$G=(V,E)$的最大匹配数等于对应的流网络$G'=(V',E')$上的最大流的值。下面来分析此算法的复杂度，我们已经知道朴素实现的增广路方法的复杂度不超过$O(|f^*|E)$，其中$|f^*|$表示最大流的值。在二分图的最大匹配中我们有(i)$|f^*|\le\min(L,R)=O(V)$；(ii)没有边与之相连的点不用考虑，故$|V|\le 2|E|$，因此$|E'|=|E|+|V|\le3|E|$。故而可以在$O(VE')=O(VE)$的时间内求出二分图$G=(V,E)$的最大匹配。
   \subsection{匈牙利算法}
+  \emph{匈牙利算法}（hungarian algorithm）也称二分图最大权匹配算法，或
   \subsection{二分图模型应用}
+  \subsubsection*{二分图的最小点覆盖}
+  给定无向图$G=(V,E)$，若点集$X\subseteq V$满足：$E$中任意一条边至少有一个端点在$X$中；则称$X$为$G$的点覆盖。点数最小的点覆盖$x^*$称作的最小点覆盖，$|x^*|$称作最小点覆盖数。有如下结论
+  \begin{theorem}
+    二分图的最小点覆盖数等于其最大匹配数。
+  \end{theorem}
+  证明从略。
+  \subsubsection*{最小路径覆盖}
+  给定有向图$G=(V,E)$，设$P$是图$G$上若干不相交的简单路径的集合，若每个点$v\in V$都存在于唯一一条$P$中的路径上，则称$P$是$G$的一个\emph{路径覆盖}（path cover）。路径数目最少的路径覆盖称作最小路径覆盖。
+
+  \emph{有向无环图}（directed acylic graph，DAG）的最小路径覆盖问题可转化为二分图的最大匹配问题。给定有向无环图$G=(V,E)$。设$V=\{1,2,\dots,n\}$，我们将点$i\in V$拆成两个点$x_i, y_i$，若$(i,j)\in E$，则连一条无向边$(x_i, y_j)$。这样
+
   \section{图的连通性}
   \subsection{强连通-Tarjan算法}
   \subsection{双连通}
