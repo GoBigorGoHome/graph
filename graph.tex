@@ -13,6 +13,7 @@
 \newcommand{\idx}{\mathrm{idx}}
 \newcommand{\cost}{\mathrm{cost}}
 \usepackage{subcaption}
+\newcommand{\mpc}{\mathrm{mpc}}
 \begin{document}
   \chapter{图论高级算法}
   \section{最大流}
@@ -411,7 +412,7 @@
   \emph{匈牙利算法}（hungarian algorithm）也称二分图最大权匹配算法，或
   \subsection{二分图模型应用}
   \subsubsection*{二分图的最小点覆盖}
-  给定无向图$G=(V,E)$，若点集$X\subseteq V$满足：$E$中任意一条边至少有一个端点在$X$中；则称$X$为$G$的点覆盖。点数最小的点覆盖$x^*$称作的最小点覆盖，$|x^*|$称作最小点覆盖数。有如下结论
+  给定无向图$G=(V,E)$，若点集$X\subseteq V$满足：$E$中任意一条边至少有一个端点在$X$中；则称$X$为$G$的点覆盖。点数最小的点覆盖$X^*$称作的最小点覆盖，$|X^*|$称作最小点覆盖数。有如下结论
   \begin{theorem}
     二分图的最小点覆盖数等于其最大匹配数。
   \end{theorem}
@@ -419,8 +420,14 @@
   \subsubsection*{最小路径覆盖}
   给定有向图$G=(V,E)$，设$P$是图$G$上若干不相交的简单路径的集合，若每个点$v\in V$都存在于唯一一条$P$中的路径上，则称$P$是$G$的一个\emph{路径覆盖}（path cover）。路径数目最少的路径覆盖称作最小路径覆盖。
 
-  \emph{有向无环图}（directed acylic graph，DAG）的最小路径覆盖问题可转化为二分图的最大匹配问题。给定有向无环图$G=(V,E)$。设$V=\{1,2,\dots,n\}$，我们将点$i\in V$拆成两个点$x_i, y_i$，若$(i,j)\in E$，则连一条无向边$(x_i, y_j)$。这样
+  \emph{有向无环图}（directed acylic graph，DAG）的最小路径覆盖问题可转化为二分图的最大匹配问题。给定有向无环图$G=(V,E)$。设$V=\{1,2,\dots,n\}$，我们将点$i\in V$拆成两个点$x_i, y_i$，若$(i,j)\in E$，则连一条无向边$(x_i, y_j)$。这样我们得到了二分图$G'=(V',E')$
+  \begin{align*}
+    V'&=\{x_1, x_2, \dots, x_n\} \cup \{y_1, y_2, \dots, y_n\}\\
+    E'&=\{(x_i,y_j)\colon (i,j)\in E\}
+  \end{align*}
+  设$|M'$是$G'$的一个最大匹配数为$|M'|$，$P*$是$G$的一个最小路径覆盖；则有$|P^*|=n-|M'|$。
 
+  下面给出证明。由于$G$的路径覆盖中的路径是两两不想交的，我们考虑从$G_0=(V,\emptyset)$开始，往图中添边的过程。用$\mpc(G)$表示图$G$的最小路径覆盖数。初始时，每个点$v\in V$自成一条路径，有$\mpc(G_0)=n$。我们希望每次加入的那条边能将两条简单路径合为一条，从而这条边应起于某条路径的终点，终于另一条路径的起点。问题归结为最多能加入多少条这样的边。不难发现，$G'$上的匹配$M$和我们要求的加边方案是一一对应的：$L$中的某个未匹配点表示某条路径的终点，$R$中的某个未匹配点表示某条路径的起点；所以$\mpc(G_i)=n-i$，于是$\mpc(G)=n-|M'|$。
   \section{图的连通性}
   \subsection{强连通-Tarjan算法}
   \subsection{双连通}
