@@ -529,27 +529,34 @@
   $S$和$T$分别是当前交错树的点集与$X$和$Y$的交集。
   \subsubsection{匈牙利算法的复杂度}
   令$n=|X|=|Y|$。
-  我们称上述\textsc{Augment}过程运行一次为一个阶段（phase）；每个阶段过后$|M|$都增加$1$，因此至多有$n$个阶段。下面考虑一个阶段的时间复杂度。
+  我们称上述\textsc{Augment}过程运行一次为一个\emph{阶段}（phase）；每个阶段过后$|M|$都增加$1$，因此至多有$n$个阶段。下面考虑一个阶段的时间复杂度。
 
   在具体分析之前，先介绍\textsc{Augment}过程的实现细节。要点如下
-  \begin{enumerate}
-    \item 只维护一个量：对每个$y\notin T$，维护一个值$\slack(y)=\min_{x\in S}\{l(x)+l(y)-w(x,y)\}$；可行标号$l$，集合$S$、$T$都不必维护。
-    \item 更新可行标号实际上是为了知道$\Delta_l = N_{l'}(S)-N_{l}(S)$中究竟有哪些点。
-    仔细考察引理\ref{L:improve-label} 中的性质\ref{P:3}，不难发现，
-    $\Delta_l=\{y\in Y-T\colon\slack(y)=\alpha_{l}\}$，恰好有$\alpha_l=\min_{y\notin T}\slack(y)$。
-    下面我们证明，不直接维护$l$、$S$、$T$也能维护$\slack$值。
-    \begin{enumerate}
-      \item 将$l(x)$的初始值全置为$\infty$，$l(y)$的初始值全置为$0$，则初始时$S=T=\emptyset$，$\slack(y)=\infty，y\in Y$。
-    \end{enumerate}
-    假设$\Delta_l$中全是匹配点，那么这些点将全都进入$T$中。把$\Delta_l$里的点的$\slack$全置为零。这样，$Y$中的某个点$y$是否在$T$中就可以通过$\slack(y)$是否为零来判断。
-  \end{enumerate}
-  % 维护$\slack(y)$的复杂度包括
-  % \begin{itemize}
-  %   \item 初始化所有所有$\slack$值的复杂度$O(n)$。
-  %   \item 第\ref{li:added-to-S} 行，每当将点$z$从$\bar{S}$移动到$S$中时需要更新所有$\slack$值，这可在$O(n)$时间内完成，在一个阶段内最多有$n$个点会被加到$S$中去，所以总复杂度为$O(n^2)$。
-  %   \item 第\ref{li:improve-label} 行，计算$l'$时需要先计算$\alpha_l=\min_{y\in T}\slack(y)$，这可在$O(n)$时间内完成，因为每次更新$l$之后，$T$中至少会增加一个点，故最多计算$n$次$\alpha_l$，从而$l$的
-  % \end{itemize}
-
+  (i)对每个$y\notin T$，维护一个值$\slack(y)=\min_{x\in S}\{l(x)+l(y)-w(x,y)\}$；
+  (ii)维护可行标号$l$，集合$S$、$T$。
+  显然，维护集合$S$、$T$的复杂度为$O(n)$。
+  更新一次可行标号的复杂度为$O(n)$，在一个阶段内更新可行标号的次数不超过$n$，因为每次更新$l$之后若仍未找到增广路，则$S$中至少增加一个点。
+  % \begin{enumerate}
+  %   \item 只维护一个量：对每个$y\notin T$，维护一个值$\slack(y)=\min_{x\in S}\{l(x)+l(y)-w(x,y)\}$；可行标号$l$，集合$S$、$T$都不必维护。
+  %   \item 更新可行标号实际上是为了知道$\Delta_l = N_{l'}(S)-N_{l}(S)$中究竟有哪些点。
+  %   仔细考察引理\ref{L:improve-label} 中的性质\ref{P:3}，不难发现，
+  %   $\Delta_l=\{y\in Y-T\colon\slack(y)=\alpha_{l}\}$，恰好有$\alpha_l=\min_{y\notin T}\slack(y)$。
+  %   下面我们证明，不直接维护$l$、$S$、$T$也能维护$\slack$值。
+  %   \begin{enumerate}
+  %     \item 将$l(x)$的初始值全置为$\infty$，$l(y)$的初始值全置为$0$，则初始时
+  %     \[S=T=\emptyset,\qquad\slack(y)=\infty\quad\forall y\in Y\]
+  %     \item   假设$\Delta_l$中全是匹配点，那么这些点将全部进入$T$。把$\Delta_l$里的点的$\slack$值全置为零。这样，$Y$中某点$y$是否在$T$中就可以通过$\slack(y)$是否为零来判断。
+  %   \end{enumerate}
+  % \end{enumerate}
+  维护$\slack(y)$的复杂度包括
+  \begin{itemize}
+    \item 初始化所有所有$\slack$值的复杂度$O(n)$。
+    \item 第\ref{li:added-to-S} 行，每当将点$z$从$\bar{S}$移动到$S$中时需要更新所有$\slack$值，这可在$O(n)$时间内完成，在一个阶段内最多有$n$个点会被加到$S$中去，所以总复杂度为$O(n^2)$。
+    \item 第\ref{li:improve-label} 行，更新$l'$需要先计算$\alpha_l=\min_{y\in T}\slack(y)$。这可在$O(n)$时间内完成。计算$l'$（更新$l$）的复杂度也是$O(n)$的，又一个阶段内更新$l$不超过$n$次，故总复杂度为$O(n^2)$。
+  \end{itemize}
+  综上可得，匈牙利算法的总复杂度为$O(n^3)$。
+  下面给出匈牙利算法的代码
+  \lstinputlisting{code/hungarian.cpp}
   \subsection{二分图的性质与应用}
   \subsubsection*{二分图的最小点覆盖}
   给定无向图$G=(V,E)$，若点集$X\subseteq V$满足：$E$中任意一条边至少有一个端点在$X$中；则称$X$为$G$的点覆盖。点数最小的点覆盖$X^*$称作的最小点覆盖，$|X^*|$称作最小点覆盖数。有如下结论
