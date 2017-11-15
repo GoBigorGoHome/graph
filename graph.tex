@@ -13,7 +13,10 @@
 \newcommand{\idx}{\mathrm{idx}}
 \newcommand{\cost}{\mathrm{cost}}
 \usepackage{subcaption}
-\newcommand{\mpc}{\mathrm{mpc}}
+\newcommand{\mpc}{\mathrm{MinPC}}
+\usepackage{clrscode3e}
+\newcommand{\match}{\mathrm{match}}
+\newcommand{\slack}{\mathrm{slack}}
 \begin{document}
   \chapter{图论高级算法}
   \section{最大流}
@@ -322,7 +325,7 @@
   用点$b_j$表示Bob的第$j$个朋友。若朋友$j$没有第$i$种贴纸，就从$a_i$向$b_j$连一条容量为$1$的边；若朋友$j$有$k$（$k\ge 2$）张第$i$种贴纸，就从$b_j$向$a_i$连一条容量为$k-1$的边。不难证明，最大流的值便是Bob所能获得的贴纸种类的最大值。
   \subsubsection*{从割的角度建图}
   从割的角度考虑，通常的思路是用有向边表示一个二元关系，我们要在满足一组二元关系的条件下求解一个最优化问题。下面以有向图的\emph{最大权闭包}（maximum weight closure）问题为例，介绍最小割建模。
-  \begin{example}[最大权闭合子图]
+  \begin{example}[最大权闭包]
   设$G=(V,E)$是一个有向图，若$V_1\subseteq V$满足：$\forall (u,v) \in E$，$u\in V_1 \Rightarrow v\in V_1$，则称$V_1$是$G$的一个闭包，图\ref{Fig:closure} 给出了一个例子。给图$G$每个节点$u$赋一个权值$w(u)\in \mathbb{Z}$，点集$X\subseteq V$的权值$w(X)$定义为$w(X)=\sum_{v\in X}w(v)$；最大权闭包问题即，求$G$的一个权值最大的闭包。
   \begin{figure}
     \centering
@@ -375,13 +378,9 @@
   由于可能有负权边，不能用Dijkstra算法求最短路，而用Bellman-Ford算法。
   下面给出代码，图的表示与前面介绍的最大流算法的相比只多出了费用\texttt{cost}，\texttt{add\_edge}函数也要做相应的修改，略去不表。
   \lstinputlisting{code/mcmf.cpp}
+  %\section{dummy}
   \section{二分图}
-  \subsection{最大流和二分图}
-  在这一小节我们用最大流模型来解决\emph{二分图最大匹配}（maximum bipartite matching）问题。
-  \subsubsection*{无向图的匹配}
-  设$G=(V,E)$是一个无向图，若边集$M\subset E$满足：对任意节点$v\in V$，$M$中至多有一条边以$v$为端点则称$M$是$G$上的一个\emph{匹配}（matching）。若$v\in V$是$M$中某条边的端点，则称$v$是$M$上的匹配点，否则称为未匹配点。最大匹配即边数最大的一个匹配。
-  \subsubsection*{二分图}
-  二分图是一类特殊的无向图，其点集$V$可划分为两个不相交的子集$L$和$R$使得$E$中每条边的端点分属$L$、$R$。形式化地说，无向图$G=(V,E)$是二分图，当且仅当存在划分$V=L\cup R$使得$E\subseteq L\times R$。
+  二分图是一类特殊的无向图，其点集$V$可划分为两个不相交的子集$L$和$R$使得$E$中每条边的端点分属$L$、$R$。形式化地说，无向图$G=(V,E)$是二分图，当且仅当存在点集$V$的\emph{二划分}（bipartition）$\{L,R\}$使得$E\subseteq L\times R$。二分图也记做$G=(L,R;E)$。
   \begin{figure}
     \centering
     \begin{subfigure}[t]{0.4\linewidth}
@@ -398,39 +397,185 @@
     \caption{二分图和对应的流网络。}
     \label{Fig:bipartite-network}
   \end{figure}
-
-  \subsubsection{二分图的最大匹配}
-  二分图的最大匹配问题可以转化为最大流问题解决。如图\ref{Fig:bipartite-network} 所示，给定二分图$G(V,E)$，$V=L\cup R$，我们可以构造一个流网络$G'=(V',E')$：
+  \subsection{二分图的最大匹配}
+  在这一小节我们用最大流模型来解决\emph{二分图最大匹配}（maximum bipartite matching）问题。
+  \subsubsection*{无向图的匹配}
+  设$G=(V,E)$是一个无向图，若边集$M\subseteq E$满足：对任意节点$v\in V$，$M$中至多有一条边以$v$为端点则称$M$是$G$上的一个\emph{匹配}（matching）。若$v\in V$是$M$中某条边的端点，则称$v$是$M$上的匹配点，否则称为非匹配点。$M$中的边称为匹配边，$E-M$中的边称为非匹配边。最大匹配即边数最大的一个匹配。若图$G$的所有顶点都是匹配点，则称$M$为\emph{完美匹配}（perfect matching）。显然，完美匹配存在的前提是$|V|$为偶数。
+  \subsubsection{二分图的最大匹配与最大流}
+  二分图的最大匹配问题可以转化为最大流问题。如图\ref{Fig:bipartite-network} 所示，给定二分图$G(V,E)$，$V=L\cup R$，我们可以构造一个流网络$G'=(V',E')$：
   \begin{align*}
     V'&=V\cup\{s,t\},\\
     E'&=\{(s,u)\colon u\in L\}\cup\{(u,v)\colon(u,v)\in E\}\cup\{(v,t)\colon v\in R\}.
   \end{align*}
   将$E'$中每条边的容量置为$1$。注意：$E$中的边是无向边而$E'$中的边是有向边。
 
-  不难证明，二分图$G=(V,E)$的最大匹配数等于对应的流网络$G'=(V',E')$上的最大流的值。下面来分析此算法的复杂度，我们已经知道朴素实现的增广路方法的复杂度不超过$O(|f^*|E)$，其中$|f^*|$表示最大流的值。在二分图的最大匹配中我们有(i)$|f^*|\le\min(L,R)=O(V)$；(ii)没有边与之相连的点不用考虑，故$|V|\le 2|E|$，因此$|E'|=|E|+|V|\le3|E|$。故而可以在$O(VE')=O(VE)$的时间内求出二分图$G=(V,E)$的最大匹配。
+  不难证明，二分图$G=(V,E)$的最大匹配数等于对应的流网络$G'=(V',E')$上的最大流的值。下面来分析此算法的复杂度，我们已经知道朴素实现的增广路方法的复杂度不超过$O(|f^*|E)$，其中$|f^*|$表示最大流的值。在二分图的最大匹配中我们有(i) $|f^*|\le\min(L,R)=O(V)$；(ii)没有边与之相连的点不用考虑，故$|V|\le 2|E|$，因此$|E'|=|E|+|V|\le3|E|$。故而可以在$O(VE')=O(VE)$的时间内求出二分图$G=(V,E)$的最大匹配。
   \subsection{匈牙利算法}
-  \emph{匈牙利算法}（hungarian algorithm）也称二分图最大权匹配算法，或
-  \subsection{二分图模型应用}
+  \emph{匈牙利算法}（hungarian algorithm）也称Kuhn-Munkres算法（简称KM算法）。匈牙利算法用于求解\emph{二分图最大权匹配}（maximum weighted bipartite matching）问题。
+%  \subsubsection*{二分图的完美匹配}
+%  令$G=(V,E)$是一个二分图，$\{A,B\}$是其（顶点的）二划分。不失一般性，设$|A|\le|B|$。设$M$为$G$的最大匹配，若$|M|=|A|$则称$M$为$G$上的\emph{完美匹配}（perfect matching）。
+  \subsubsection*{带权二分图}
+  给二分图$G=(V,E)$的每条边$(u,v)\in E$赋一个权值$w(u,v)\in\mathbb{N}$就得到了\emph{带权二分图}（weighted bipartite graph）。匹配$M$的权值定义匹配边的权值之和，即$w(M)=\sum_{(u,v)\in M}w(u,v)$。二分图最大权匹配问题即，给定带权二分图$G=(V,E)$，$V$的二划分为$\{X,Y\}$，求一个权值最大的匹配$M$。在二分图最大权匹配问题中，不失一般性，（i）通过添加权值为零的边，我们可以假定图$G=(V,E)$是完全二分图，即$\forall u\in L,v\in R,(u,v)\in E$；(ii)通过添加虚拟节点，我们可以假定$|X|=|Y|$，此时我们总可以求出一个权值最大的完美匹配。加上了这两个假定之后的二分图最大权匹配问题也称作二分图最大权完美匹配问题或者\emph{指派问题}（assignment problem）。这小节中，我们在上述两假定下讨论二分图的最大权完美匹配问题。
+  \begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.45\linewidth}
+      \centering
+      \includegraphics[scale=0.8]{figures/weighted-bipartite}
+      \caption{带权完全二分图}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.45\linewidth}
+      \centering
+      \includegraphics[scale=0.8]{figures/max-weighted-bipartite-match}
+      \caption{带权最大匹配}
+    \end{subfigure}
+    \caption{二分图最大权匹配问题。}
+    % \label{}
+  \end{figure}
+  \subsubsection*{交错路和交错树}
+  令$M$为二分图$G=(V,E)$的一个匹配。设$P$为$G$上一条简单路径\footnote{这里我们将路径视作边的集合，故用大写字母$P$表示。}，若$P$中的边交替地出现在$M$和$E-M$中则称$M$为\emph{交错路}（alterntating path）\footnote{有的文献中规定交错路至少有一个端点是非匹配点}。若$P$的两端点都是非匹配点，则称$p$为增广路；不难验证，(i)增广路上的非匹配边比匹配边多一条，(ii)将$P$上的匹配边和非匹配边对调，得到的边集$M'$仍是$G$上的一个匹配，且$|M'|=|M|+1$；这正是称$p$为增广路的原因。增广操作可以用\emph{对称差}（symmetric difference，$\oplus$）这一集合运算来表示；设$A$、$B$为两集合，对称差$A\oplus B$定义为$(A-B)\cup(B-A)$，即恰属于这两集合中某一个的元素的集合。我们有$M'=M\oplus P$。
+
+  由$G$和$M$所导出的\emph{交错树}（alternating tree）是一棵有根树，它满足：(i)以某个非匹配点为根，(ii)从根到树中每个节点的路径都是交错路。
+  \subsubsection{顶点标号和相等图}
+  设$G=(V,E)$是一个二分图，$V$划分为$\{X,Y\}$。顶点标号是一个函数$l\colon V\to\mathbb{R}$。称$l$为可行标号若它满足
+  \[
+    l(x)+l(y)\ge w(x,y),\quad \forall x\in X, y\in Y.
+  \]
+
+  \emph{相等图}（equlity graph）$G_l=(V,E_l)$是由$G$和$l$所导出的一个图，
+  \[
+    E_l = \{(x,y)\in E\colon l(x)+l(y)=w(x,y)\}.
+  \]
+  显然有
+  \begin{theorem}
+    若$l$是一个可行标号函数且$M\subseteq E_l$是一个完美匹配，则$M$是一个最大权匹配。
+  \end{theorem}
+  下面给出匈牙利算法的伪代码：
+  \begin{codebox}
+    \Procname{$\proc{Hungarian}(G,w)$}
+    \li 令$l$为某一可行标号，$M$为$G_l$上的某个匹配
+    \li \While $M$不是完美匹配
+    \li \Do \label{li:begin-augment}
+          \If $G_l$中不存在$M$的增广路
+    \li     \Then
+              计算新标号函数$l'$使得$M\subset E_{l'}$且$G_{l'}$上存在$M$的增广路 \label{li:improve-label-1}
+    \li       $l \gets l'$
+          \End
+    \li   在$G_l$上找一条增广路$P$
+    \li   $M=M\oplus P$
+        \End  \label{li:end-augment}
+    \li    \Return $M$
+  \end{codebox}
+  初始的可行标号可置为
+  \[\forall y\in Y,\ l(y)=0,\quad \forall x\in X,\  l(x)=\max_{y\in Y}\{w(x,y)\}.\]
+  匈牙利算法的核心是上述伪代码的第\ref{li:improve-label-1}~行，即优化可行标号使得有新边进入相等图且出现增广路。下面讲述如何优化可行标号，为此，先介绍邻集这一概念。
+
+  令$l$是某个可行标号，点$u\in V$在$G_l$上的\emph{邻集}（neighbor）定义为$N_l(u)=\{v\in V\colon(u,v)\in E_l\}$，类似地，点集$S\subseteq V$的邻集定义为$N_l(S)=\bigcup_{u\in S}N_l(u)$。
+  \begin{lemma}\label{L:improve-label}
+    设$S\subseteq X$满足$T=N_l(S)\ne Y$。令
+    \[
+      \alpha_l = \min_{x\in S,y\notin T}\{l(x)+l(y)-w(x,y)\}.
+    \]
+    又令
+    \[l'(v) =
+    \begin{cases}
+      l(v)-a_l &  \text{若$v\in S$;}\\
+      l(v)+a_l &  \text{若$v\in T$;}\\
+      l(v) & \text{其他情况.}
+    \end{cases}
+    \]
+    则$l'$是一个可行标号且满足
+    \begin{enumerate}
+      \item 对于$x\in S,y\in T$，若$(x,y)\in E_l$， 则$(x,y)\in E_{l'}$；\label{P:1}
+      \item 对于$x\notin S, y\notin T$，若$(x,y)\in E_l$， 则$(x,y)\in E_{l'}$；
+      \item 存在边$(x,y)\in E_{l'}$满足$x\in S,y\notin T$。\label{P:3}
+    \end{enumerate}
+  \end{lemma}
+  此引理的正确性几乎是显然的，读者可自行验证。
+  %我们要指出，不存在$(x,y)\in E_l$使得$x\in\bar{S},y\in T$；其中$\bar{S}=X-S$。根据邻集的定义，对任意边$(x,y)\in E_l$，$x\in S,y\in N_l(S)=T$和$x\in\bar{S}$
+  %匈牙利算法的过程如下：从某个$l$和某个图$G$上某个匹配$M\subset\E_l$开始；若$M$不是$G_l$上的完美匹配，则重复：(i)将$M$增广为$G_l$上的最大匹配，(ii)
+  下面我们来考虑怎样选择$S$可以使得按引理\ref{L:improve-label} 得到$E_{l'}$满足(i)$M\subset E_l$且(ii) $E_{l'}$中包含$M$的增广路。为了便于表述，我们定义一个记号，设$S\subseteq V$，$S$的匹配集$\match(S)$定义为
+  \[\match(S)=\{t\in V\colon\text{存在}\ s\in S\ \text{使得}\ (s,t)\in M\}\]
+  % 在不至引起混淆的情况下，也用$u$表示单元集$\{u\}$。
+
+  我们的思路是利用引理\ref{L:improve-label} 中的$l'$所满足的三条性质，$S$首先要满足$N_l(S)\ne Y$，这样才能利用性质\ref{P:3}；因此，
+  (i)令$S_0=\{u\}$，$u$是$X$中任意一个未匹配点，由于$M$不是完美匹配，$u$总是存在的；
+  (ii)从而$N_l(S_0)$中都是匹配点，为了保证$N_l(S_0)$覆盖的匹配边仍在$E_{l'}$中，根据性质\ref{P:1}，再令$S_1=S_0\cup\match(N_l(S_0))$，显然有$S_1\subseteq{X}$；如此反复，直到$\match(N_l(S_k))\subset S_k$。此$S_k$即为所求的$S$。不难看出上述过程是一个不断扩展以$u$为根的交错树的过程。由于$G_l$中不存在增广路所以对任意$1\le i\le k$，$N_l(S_i)$中全是匹配点，从而有$N_l(S_i)\ne Y$。因此$S_k$即为我们所要求的$S$。
+
+  由上述分析可知$N_l(S)\subset N_{l'}(S)$，若$N_{l'}(S)-N_{l}(S)$中不含未匹配点则继续更新$S$；随着$N_l(S)$中点不断增多，迟早会在$N_{l'}(S)-N_{l}(S)$中遇到未匹配点，此时便得到了一条增广路。
+
+  我们从扩展交错树的角度，将上面给出的匈牙利算法的伪代码的\ref{li:begin-augment} 到\ref{li:end-augment} 行加以细化
+  \begin{codebox}
+    \Procname{\proc{Augment}($G,l$)}
+    \li 在$X$中取一未匹配点$u$
+    \li $S \gets \{u\}$
+    \li $T \gets\emptyset$
+    \li \Repeat
+    \li \If $N_l(S)\isequal T$\Then
+    \li   按照引理\ref{L:improve-label} 计算$l'$\label{li:improve-label}
+    \li   $l \gets l'$
+        \End
+    \li   \For $y \in N_l(S)-T$\Do
+    \li     \If $y$是未匹配点\Then
+    \li       $P \gets \text{交错树中的}\ u\leadsto y\ \text{路径}$
+    \li       $M\gets M\oplus P$
+    \li       \Return
+    \li     \Else
+    \li       $\{z\}=\match(\{y\})$
+    \li       $S\gets S\cup\{z\}$\label{li:added-to-S}
+    \li       $T\gets T\cup\{y\}$
+            \End
+          \End
+  \end{codebox}
+  $S$和$T$分别是当前交错树的点集与$X$和$Y$的交集。
+  \subsubsection{匈牙利算法的复杂度}
+  令$n=|X|=|Y|$。
+  我们称上述\textsc{Augment}过程运行一次为一个阶段（phase）；每个阶段过后$|M|$都增加$1$，因此至多有$n$个阶段。下面考虑一个阶段的时间复杂度。
+
+  在具体分析之前，先介绍\textsc{Augment}过程的实现细节。要点如下
+  \begin{enumerate}
+    \item 只维护一个量：对每个$y\notin T$，维护一个值$\slack(y)=\min_{x\in S}\{l(x)+l(y)-w(x,y)\}$；可行标号$l$，集合$S$、$T$都不必维护。
+    \item 更新可行标号实际上是为了知道$\Delta_l = N_{l'}(S)-N_{l}(S)$中究竟有哪些点。
+    仔细考察引理\ref{L:improve-label} 中的性质\ref{P:3}，不难发现，
+    $\Delta_l=\{y\in Y-T\colon\slack(y)=\alpha_{l}\}$，恰好有$\alpha_l=\min_{y\notin T}\slack(y)$。
+    下面我们证明，不直接维护$l$、$S$、$T$也能维护$\slack$值。
+    \begin{enumerate}
+      \item 将$l(x)$的初始值全置为$\infty$，$l(y)$的初始值全置为$0$，则初始时$S=T=\emptyset$，$\slack(y)=\infty，y\in Y$。
+    \end{enumerate}
+    假设$\Delta_l$中全是匹配点，那么这些点将全都进入$T$中。把$\Delta_l$里的点的$\slack$全置为零。这样，$Y$中的某个点$y$是否在$T$中就可以通过$\slack(y)$是否为零来判断。
+  \end{enumerate}
+  % 维护$\slack(y)$的复杂度包括
+  % \begin{itemize}
+  %   \item 初始化所有所有$\slack$值的复杂度$O(n)$。
+  %   \item 第\ref{li:added-to-S} 行，每当将点$z$从$\bar{S}$移动到$S$中时需要更新所有$\slack$值，这可在$O(n)$时间内完成，在一个阶段内最多有$n$个点会被加到$S$中去，所以总复杂度为$O(n^2)$。
+  %   \item 第\ref{li:improve-label} 行，计算$l'$时需要先计算$\alpha_l=\min_{y\in T}\slack(y)$，这可在$O(n)$时间内完成，因为每次更新$l$之后，$T$中至少会增加一个点，故最多计算$n$次$\alpha_l$，从而$l$的
+  % \end{itemize}
+
+  \subsection{二分图的性质与应用}
   \subsubsection*{二分图的最小点覆盖}
   给定无向图$G=(V,E)$，若点集$X\subseteq V$满足：$E$中任意一条边至少有一个端点在$X$中；则称$X$为$G$的点覆盖。点数最小的点覆盖$X^*$称作的最小点覆盖，$|X^*|$称作最小点覆盖数。有如下结论
-  \begin{theorem}
+  \begin{theorem}[K\"{o}nig 1931]
     二分图的最小点覆盖数等于其最大匹配数。
   \end{theorem}
   证明从略。
   \subsubsection*{最小路径覆盖}
-  给定有向图$G=(V,E)$，设$P$是图$G$上若干不相交的简单路径的集合，若每个点$v\in V$都存在于唯一一条$P$中的路径上，则称$P$是$G$的一个\emph{路径覆盖}（path cover）。路径数目最少的路径覆盖称作最小路径覆盖。
+  给定有向图$G=(V,E)$，设$P$是图$G$上若干\emph{点不相交}（vertex-disjoint）的简单路径的集合，若每个点$v\in V$都存在于唯一一条$P$中的路径上，则称$P$是$G$的一个\emph{路径覆盖}（path cover）。路径数目最少的路径覆盖称作最小路径覆盖。用$\mpc(G)$表示图$G$的最小路径覆盖数。
 
   \emph{有向无环图}（directed acylic graph，DAG）的最小路径覆盖问题可转化为二分图的最大匹配问题。给定有向无环图$G=(V,E)$。设$V=\{1,2,\dots,n\}$，我们将点$i\in V$拆成两个点$x_i, y_i$，若$(i,j)\in E$，则连一条无向边$(x_i, y_j)$。这样我们得到了二分图$G'=(V',E')$
   \begin{align*}
     V'&=\{x_1, x_2, \dots, x_n\} \cup \{y_1, y_2, \dots, y_n\}\\
     E'&=\{(x_i,y_j)\colon (i,j)\in E\}
   \end{align*}
-  设$|M'$是$G'$的一个最大匹配数为$|M'|$，$P*$是$G$的一个最小路径覆盖；则有$|P^*|=n-|M'|$。
-
-  下面给出证明。由于$G$的路径覆盖中的路径是两两不想交的，我们考虑从$G_0=(V,\emptyset)$开始，往图中添边的过程。用$\mpc(G)$表示图$G$的最小路径覆盖数。初始时，每个点$v\in V$自成一条路径，有$\mpc(G_0)=n$。我们希望每次加入的那条边能将两条简单路径合为一条，从而这条边应起于某条路径的终点，终于另一条路径的起点。问题归结为最多能加入多少条这样的边。不难发现，$G'$上的匹配$M$和我们要求的加边方案是一一对应的：$L$中的某个未匹配点表示某条路径的终点，$R$中的某个未匹配点表示某条路径的起点；所以$\mpc(G_i)=n-i$，于是$\mpc(G)=n-|M'|$。
-  \section{图的连通性}
-  \subsection{强连通-Tarjan算法}
-  \subsection{双连通}
-  \subsection{2-SAT问题}
-  \chapter{A DUMMY CHAPTER}
+  \begin{theorem}
+    设$M'$是$G'$的一个最大匹配，$P^*$是$G$的一个最小路径覆盖；则有$|P^*|=n-|M'|$。
+  \end{theorem}
+  %$G$的路径覆盖中的路径是两两不相交的。
+  \begin{proof}
+    考虑从$G_0=(V,\emptyset)$开始，往图中添边的过程。初始时，每个点$v\in V$自成一条路径，有$\mpc(G_0)=n$。我们希望每次加入的那条边能将两条简单路径合为一条，所以这条边应起于某条路径的终点，终于另一条路径的起点。反复如此添边，直到无法操作为止。将添边过程中得到的图依次记做$G_1,G_2,\dots$。问题归结为最多能加入多少条这样的边。不难发现，$G'$上的匹配$M$和上述加边方案是一一对应的：$L$中的某个未匹配点表示某条路径的终点，$R$中的某个未匹配点表示某条路径的起点；所以$\mpc(G_i)=n-i$，于是$\mpc(G)=n-|M'|$。
+  \end{proof}
+  \
+  % \section{图的连通性}
+  % \subsection{强连通-Tarjan算法}
+  % \subsection{双连通}
+  % \subsection{2-SAT问题}
+  % \chapter{A DUMMY CHAPTER}
 \end{document}
